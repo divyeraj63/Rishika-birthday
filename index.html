@@ -1,8 +1,11 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday Gullumullu ❤️</title><style>
+<title>Happy Birthday Gullumullu ❤️</title>
+
+<style>
 *{
 margin:0;
 padding:0;
@@ -16,12 +19,12 @@ overflow:hidden;
 color:white;
 }
 
+/* stars background */
 .stars{
 position:fixed;
 width:100%;
 height:100%;
-background:
-radial-gradient(white 1px, transparent 1px);
+background: radial-gradient(white 1px, transparent 1px);
 background-size:50px 50px;
 animation:moveStars 80s linear infinite;
 z-index:-1;
@@ -33,6 +36,7 @@ from{transform:translateY(0);}
 to{transform:translateY(-1000px);}
 }
 
+/* pages */
 .page{
 position:absolute;
 width:100%;
@@ -48,7 +52,7 @@ background:rgba(0,0,0,0.6);
 
 .active{
 display:flex;
-animation:fade 2s;
+animation:fade 1.5s;
 }
 
 @keyframes fade{
@@ -56,16 +60,8 @@ from{opacity:0;}
 to{opacity:1;}
 }
 
-h1{
-font-size:3rem;
-margin-bottom:20px;
-}
-
-p{
-max-width:800px;
-font-size:1.3rem;
-line-height:1.8;
-}
+h1{font-size:3rem;margin-bottom:20px;}
+p{max-width:800px;font-size:1.3rem;line-height:1.8;}
 
 img{
 max-width:80%;
@@ -89,95 +85,22 @@ border-radius:12px;
 cursor:pointer;
 font-size:18px;
 }
-</style></head><body><div class="stars"></div><div class="page active" id="login">
-<h1>❤️ A Surprise For Gullumullu ❤️</h1>
-<p>Enter the secret password</p>
-<input id="password" type="password">
-<button onclick="checkPass()">Enter</button>
-</div><div class="page" id="slide1">
-<h1>Happy Birthday Rishika ❤️</h1>
-<p>
-Some people become memories.
-Some become lessons.
-And some become the most beautiful part of life.
-</p>
-</div><div class="page" id="slide2">
-<p>
-Around June–July, after a long silence,
-life somehow brought us back together.
-And I’m grateful every day that it happened.
-</p>
-</div><div class="page" id="slide3">
-<img src="IMG_20260209_022837_068.jpg">
-<p>Our story is made of countless little moments.</p>
-</div><div class="page" id="slide4">
-<img src="IMG_20260209_022846_743.jpg">
-<p>Road No. 3 ❤️<br>Our first photo together as best friends.</p>
-</div><div class="page" id="slide5">
-<img src="IMG_20260211_031208_494.jpg">
-<p>Every smile with you became a memory worth keeping.</p>
-</div><div class="page" id="slide6">
-<img src="IMG_20260313_142029.jpg">
-<p>You turned ordinary days into special ones.</p>
-</div><div class="page" id="slide7">
-<img src="Screenshot_2026-02-28-02-26-20-53_965bbf4d18d205f782c6b8409c5773a4.jpg">
-<p>Every conversation became my favorite part of the day.</p>
-</div><div class="page" id="slide8">
-<img src="Screenshot_2026-04-04-21-33-33-03_99c04817c0de5652397fc8b56c3b3817.jpg">
-<p>Every moment with you is my favorite memory.</p>
-</div><div class="page" id="slide9">
-<img src="Snapchat-1167328306.jpg">
-<p>Thank you for every laugh and every smile.</p>
-</div><div class="page" id="slide10">
-<img src="Snapchat-541767797.jpg">
-<p>Happy Birthday My Gullumullu ❤️</p>
-</div><div class="page" id="slide11">
-<img src="Snapchat-768854161.jpg">
-<p>
-Forever cheering for you.<br>
-From ur baccha 🙈
-</p>
-</div><iframe style="position:fixed;bottom:10px;left:10px;border-radius:12px;"
-src="https://open.spotify.com/embed/track/1hQia6rxgfM1ly2hE3StWp"
-width="300"
-height="80"
-allow="autoplay; clipboard-write; encrypted-media; fullscreen">
-</iframe><script>
 
-let current = 1;
-
-function checkPass(){
-let pass=document.getElementById("password").value;
-
-if(pass==="2512"){
-document.getElementById("login").classList.remove("active");
-document.getElementById("slide1").classList.add("active");
-
-window.slideshow = setInterval(() => {
-
-
-</script> <style>
-
+/* hearts */
 .heart{
 position:fixed;
 bottom:-50px;
 font-size:24px;
-pointer-events:none;
 animation:floatHeart 8s linear forwards;
 z-index:9999;
 }
 
 @keyframes floatHeart{
-0%{
-transform:translateY(0);
-opacity:1;
-}
-100%{
-transform:translateY(-110vh);
-opacity:0;
-}
+0%{transform:translateY(0);opacity:1;}
+100%{transform:translateY(-110vh);opacity:0;}
 }
 
+/* popup */
 .popup{
 display:none;
 position:fixed;
@@ -192,299 +115,211 @@ align-items:center;
 flex-direction:column;
 text-align:center;
 padding:20px;
-color:white;
 }
 
-.popup h1{
-margin-bottom:20px;
-}
-
-.popup button{
-margin:10px;
-padding:12px 20px;
+/* buttons */
+.secretBtn,.quizBtn{
+position:fixed;
+z-index:9999;
+padding:10px 15px;
+border-radius:10px;
 border:none;
-border-radius:12px;
-font-size:18px;
 cursor:pointer;
 }
 
-.secretBtn{
-position:fixed;
-bottom:15px;
-right:15px;
-z-index:9999;
-opacity:0.6;
-}
+.secretBtn{bottom:15px;right:15px;opacity:0.7;}
+.quizBtn{top:15px;right:15px;}
 
-.quizBtn{
+/* cake */
+#cakePage,#fireworksPage{
+display:none;
 position:fixed;
-top:15px;
-right:15px;
-z-index:9999;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+z-index:99999;
 }
-
 </style>
+</head>
 
-<button class="quizBtn" onclick="openQuiz()">
-❤️ Quiz
-</button>
+<body>
 
-<button class="secretBtn" onclick="openSecret()">
-Don't Click 😭
-</button>
+<div class="stars"></div>
 
+<!-- LOGIN -->
+<div class="page active" id="login">
+<h1>❤️ A Surprise For Gullumullu ❤️</h1>
+<p>Enter the secret password</p>
+<input id="password" type="password">
+<button onclick="checkPass()">Enter</button>
+</div>
+
+<!-- SLIDES -->
+<div class="page" id="slide1"><h1>Happy Birthday ❤️</h1><p>Some people become memories...</p></div>
+<div class="page" id="slide2"><p>Life somehow brought us back together...</p></div>
+<div class="page" id="slide3"><p>Our story is made of moments ❤️</p></div>
+<div class="page" id="slide4"><p>First memories together ❤️</p></div>
+<div class="page" id="slide5"><p>Every smile matters ❤️</p></div>
+<div class="page" id="slide6"><p>You made life special ❤️</p></div>
+<div class="page" id="slide7"><p>Every talk = favorite moment</p></div>
+<div class="page" id="slide8"><p>Best memories forever ❤️</p></div>
+<div class="page" id="slide9"><p>Thank you ❤️</p></div>
+<div class="page" id="slide10"><p>Happy Birthday 🎂</p></div>
+<div class="page" id="slide11"><p>Forever cheering for you ❤️</p></div>
+
+<!-- SPOTIFY -->
+<iframe style="position:fixed;bottom:10px;left:10px;border-radius:12px;"
+src="https://open.spotify.com/embed/track/1hQia6rxgfM1ly2hE3StWp"
+width="300" height="80"></iframe>
+
+<!-- BUTTONS -->
+<button class="quizBtn" onclick="openQuiz()">❤️ Quiz</button>
+<button class="secretBtn" onclick="openSecret()">Don't Click 😭</button>
+
+<!-- POPUPS -->
 <div class="popup" id="secretPopup">
-
 <h1>I knew you'd click it 😭❤️</h1>
-
-<p>
-Thank you for staying.<br><br>
-
-Thank you for coming back.<br><br>
-
-Thank you for becoming such an important part of my life ❤️
-</p>
-
-<button onclick="closeSecret()">
-Aww ❤️
-</button>
-
+<p>Thank you for everything ❤️</p>
+<button onclick="closeSecret()">Aww ❤️</button>
 </div>
 
 <div class="popup" id="quizPopup">
-
-<h1>❤️ Gullumullu Quiz ❤️</h1>
-
-<div id="quizContent">
-
-<p>Who is more dramatic? 🤣</p>
-
-<button onclick="nextQuestion()">
-Me 😭
-</button>
-
-<button onclick="nextQuestion()">
-You 😭
-</button>
-
-<button onclick="nextQuestion()">
-Both equally dangerous 🤣
-</button>
-
+<h1>❤️ Quiz ❤️</h1>
+<div id="quizContent"></div>
 </div>
 
+<!-- CAKE -->
+<div id="cakePage">
+<h1>🎂 Make a Wish ❤️</h1>
+<div style="font-size:60px;">
+<span onclick="blow(this)">🕯️</span>
+<span onclick="blow(this)">🕯️</span>
+<span onclick="blow(this)">🕯️</span>
+<span onclick="blow(this)">🕯️</span>
+<span onclick="blow(this)">🕯️</span>
 </div>
-<script>
-let candles = 0;
+<div style="font-size:120px;">🎂</div>
+<p id="wishText"></p>
+</div>
 
-function blow(el){
-if(el.innerHTML === "💨") return;
+<!-- FIREWORKS -->
+<div id="fireworksPage">
+<h1>🎆 Happy Birthday ❤️</h1>
+<p>Wish fulfilled ✨</p>
+</div>
 
-el.innerHTML = "💨";
-candles++;
-
-if(candles === 5){
-document.getElementById("wishText").innerHTML = "Wish granted ❤️";
-
-setTimeout(()=>{
-document.getElementById("cakePage").style.display = "none";
-document.getElementById("fireworksPage").style.display = "flex";
-},2000);
-}
-}
-</script>
 <script>
 
-setInterval(()=>{
+let current = 1;
 
-let heart=document.createElement("div");
+/* LOGIN + SLIDES */
+function checkPass(){
+let pass = document.getElementById("password").value;
 
-heart.className="heart";
+if(pass === "2512"){
+document.getElementById("login").classList.remove("active");
+document.getElementById("slide1").classList.add("active");
 
-let hearts=["❤️","💕","💖","💗"];
+window.slideshow = setInterval(()=>{
 
-heart.innerHTML=hearts[Math.floor(Math.random()*hearts.length)];
+document.getElementById("slide"+current).classList.remove("active");
+current++;
 
-heart.style.left=Math.random()*100+"vw";
+if(current > 11){
+clearInterval(window.slideshow);
+document.getElementById("cakePage").style.display="flex";
+return;
+}
 
-document.body.appendChild(heart);
-
-setTimeout(()=>{
-heart.remove();
-},8000);
+document.getElementById("slide"+current).classList.add("active");
 
 },3000);
 
+}else{
+alert("Wrong Password ❤️");
+}
+}
+
+/* HEARTS */
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML=["❤️","💖","💗","💕"][Math.floor(Math.random()*4)];
+heart.style.left=Math.random()*100+"vw";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),8000);
+},2000);
+
+/* SECRET */
 function openSecret(){
 document.getElementById("secretPopup").style.display="flex";
 }
-
 function closeSecret(){
 document.getElementById("secretPopup").style.display="none";
 }
 
-let question=0;
-
-const questions=[
-
-{
-q:"Who is more dramatic? 🤣",
-a:["Me 😭","You 😭","Both equally dangerous 🤣"]
-},
-
-{
-q:"How long is our '5 minute' conversation? 🤧",
-a:["5 min","30 min","Until we forget time 🤣"]
-},
-
-{
-q:"Who gets distracted first? 😭",
-a:["Me","You","Both"]
-},
-
-{
-q:"Who starts teasing first? 🤣",
-a:["Me","You","Depends on mood"]
-},
-
-{
-q:"Our strongest skill? ❤️",
-a:["Talking","Laughing","Doing both"]
-},
-
-{
-q:"Who misses the other more? 🥺",
-a:["Me","You","Not answering 😭"]
-},
-
-{
-q:"What should Gullumullu do today? 🎂",
-a:["Smile ❤️","Eat Cake 🎂","Remember she's amazing ✨"]
-}
-
+/* QUIZ */
+let questions=[
+"Who is more dramatic?",
+"How long is our 5 min talk?",
+"Who misses more?",
+"Best skill?"
 ];
 
+let q=0;
+
 function openQuiz(){
-question=0;
-showQuestion();
+q=0;
 document.getElementById("quizPopup").style.display="flex";
+showQ();
 }
 
-function showQuestion(){
-
-let q=questions[question];
-
-document.getElementById("quizContent").innerHTML=`
-
-<p>${q.q}</p>
-
-<button onclick="nextQuestion()">${q.a[0]}</button>
-
-<button onclick="nextQuestion()">${q.a[1]}</button>
-
-<button onclick="nextQuestion()">${q.a[2]}</button>
-
-`;
-
+function showQ(){
+if(q>=questions.length){
+document.getElementById("quizContent").innerHTML=
+`<h2>Result ❤️</h2><p>You are Gullumullu ❤️</p>
+<button onclick="closeQuiz()">Close</button>`;
+return;
 }
 
-function nextQuestion(){
-
-question++;
-
-if(question>=questions.length){
-
-document.getElementById("quizContent").innerHTML=`
-
-<h2>🎉 Result 🎉</h2>
-
-<p>
-
-Score: 100/100 ❤️<br><br>
-
-Reason:<br>
-
-You are Gullumullu 🤭❤️
-
-</p>
-
-<button onclick="closeQuiz()">
-
-Continue ❤️
-
-</button>
-
-`;
-
-}else{
-
-showQuestion();
-
+document.getElementById("quizContent").innerHTML=
+`<p>${questions[q]}</p>
+<button onclick="nextQ()">Answer</button>`;
 }
 
+function nextQ(){
+q++;
+showQ();
 }
 
 function closeQuiz(){
-
 document.getElementById("quizPopup").style.display="none";
-
 }
 
-</script> <!-- 🎂 CAKE PAGE -->
-<div id="cakePage" style="
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:black;
-color:white;
-z-index:99999;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-text-align:center;
-">
+/* CAKE */
+let candles=0;
 
-<h1>🎂 Happy Birthday Gullumullu ❤️</h1>
+function blow(el){
+if(el.innerHTML==="💨") return;
+el.innerHTML="💨";
+candles++;
 
-<p>Click the candles and make a wish 😭✨</p>
+if(candles===5){
+document.getElementById("wishText").innerHTML="Wish granted ❤️";
+setTimeout(()=>{
+document.getElementById("cakePage").style.display="none";
+document.getElementById("fireworksPage").style.display="flex";
+},2000);
+}
+}
 
-<div style="font-size:60px;margin:20px;">
-<span onclick="blow(this)">🕯️</span>
-<span onclick="blow(this)">🕯️</span>
-<span onclick="blow(this)">🕯️</span>
-<span onclick="blow(this)">🕯️</span>
-<span onclick="blow(this)">🕯️</span>
-</div>
+</script>
 
-<div style="font-size:120px;">🎂</div>
-
-<p id="wishText"></p>
-
-</div>
-
-<!-- 🎆 FIREWORKS PAGE -->
-<div id="fireworksPage" style="
-display:none;
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:black;
-color:white;
-z-index:99999;
-justify-content:center;
-align-items:center;
-flex-direction:column;
-text-align:center;
-">
-
-<h1>🎆 Happy Birthday Rishika ❤️</h1>
-<p>May all your wishes come true ✨</p>
-
-</div> </body>
+</body>
 </html>
-
