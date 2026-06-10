@@ -159,12 +159,6 @@ window.slideshow = setInterval(() => {
 
     current++;
 
-    window.slideshow = setInterval(() => {
-
-    document.getElementById("slide" + current).classList.remove("active");
-
-    current++;
-
     if (current > 11) {
 
         clearInterval(window.slideshow);
