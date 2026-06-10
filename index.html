@@ -158,8 +158,11 @@ document.getElementById("slide"+current).classList.remove("active");
 
 current++;
 
-if(current>11){
-current=1;
+if(current > 11){
+    clearInterval(window.slideshow);
+    document.getElementById("slide11").classList.remove("active");
+    document.getElementById("cakePage").style.display = "flex";
+    return;
 }
 
 document.getElementById("slide"+current).classList.add("active");
@@ -288,7 +291,25 @@ Both equally dangerous 🤣
 </div>
 
 </div>
+<script>
+let candles = 0;
 
+function blow(el){
+if(el.innerHTML === "💨") return;
+
+el.innerHTML = "💨";
+candles++;
+
+if(candles === 5){
+document.getElementById("wishText").innerHTML = "Wish granted ❤️";
+
+setTimeout(()=>{
+document.getElementById("cakePage").style.display = "none";
+document.getElementById("fireworksPage").style.display = "flex";
+},2000);
+}
+}
+</script>
 <script>
 
 setInterval(()=>{
@@ -426,5 +447,60 @@ document.getElementById("quizPopup").style.display="none";
 
 }
 
-</script> </body>
+</script> <!-- 🎂 CAKE PAGE -->
+<div id="cakePage" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+color:white;
+z-index:99999;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+">
+
+<h1>🎂 Happy Birthday Gullumullu ❤️</h1>
+
+<p>Click the candles and make a wish 😭✨</p>
+
+<div style="font-size:60px;margin:20px;">
+<span onclick="blow(this)">🕯️</span>
+<span onclick="blow(this)">🕯️</span>
+<span onclick="blow(this)">🕯️</span>
+<span onclick="blow(this)">🕯️</span>
+<span onclick="blow(this)">🕯️</span>
+</div>
+
+<div style="font-size:120px;">🎂</div>
+
+<p id="wishText"></p>
+
+</div>
+
+<!-- 🎆 FIREWORKS PAGE -->
+<div id="fireworksPage" style="
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+color:white;
+z-index:99999;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+">
+
+<h1>🎆 Happy Birthday Rishika ❤️</h1>
+<p>May all your wishes come true ✨</p>
+
+</div> </body>
 </html>
