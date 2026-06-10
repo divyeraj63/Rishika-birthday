@@ -93,7 +93,13 @@ font-size:18px;
 <h1>❤️ A Surprise For Gullumullu ❤️</h1>
 <p>Enter the secret password</p>
 <input id="password" type="password">
-<button onclick="checkPass()">Enter</button>
+<button onclick="checkPass()">📸 Start Memory Journey ❤️</button>
+
+<br><br>
+
+<button onclick="openQuiz()">❤️ Our Quiz</button>
+
+<button onclick="dontClick()">🚫 Don't Click</button>
 </div><div class="page" id="slide1">
 <h1>Happy Birthday Rishika ❤️</h1>
 <p>
@@ -231,6 +237,48 @@ document.getElementById("slide"+current).classList.add("active");
 alert("Wrong Password ❤️");
 }
 }
+function openQuiz(){
 
+document.body.innerHTML = `
+<div style="background:black;color:white;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;">
+
+<h1>❤️ Our Quiz ❤️</h1>
+
+<p>Who is more dramatic? 🤣</p>
+
+<button onclick="alert('No wrong answer 😭❤️')">Me 😭</button>
+
+<button onclick="alert('No wrong answer 😭❤️')">You 😭</button>
+
+<br><br>
+
+<button onclick="location.reload()">⬅ Back</button>
+
+</div>
+`;
+}
+
+function dontClick(){
+
+document.body.innerHTML = `
+<div style="background:black;color:white;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;">
+
+<h1>🚫 I Told You Not To Click 😭</h1>
+
+<p>
+
+🏆 World's Cutest Person Award
+
+Winner:
+
+❤️ Gullumullu ❤️
+
+</p>
+
+<button onclick="location.reload()">⬅ Back</button>
+
+</div>
+`;
+  }
 </script></body>
 </html>
