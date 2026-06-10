@@ -155,32 +155,6 @@ document.getElementById("slide1").classList.add("active");
 
 window.slideshow = setInterval(() => {
 
-    document.getElementById("slide" + current).classList.remove("active");
-
-    current++;
-
-    if (current > 11) {
-
-        window.slideshow = setInterval(() => {
-
-    document.getElementById("slide" + current).classList.remove("active");
-
-    current++;
-
-    if (current > 11) {
-        clearInterval(window.slideshow);
-
-        document.getElementById("cakePage").style.display = "flex";
-        return;
-    }
-
-    document.getElementById("slide" + current).classList.add("active");
-
-}, 12000);
-}else{
-alert("Wrong Password ❤️");
-}
-}
 
 </script> <style>
 
