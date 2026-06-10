@@ -153,21 +153,25 @@ if(pass==="2512"){
 document.getElementById("login").classList.remove("active");
 document.getElementById("slide1").classList.add("active");
 
-setInterval(()=>{
-document.getElementById("slide"+current).classList.remove("active");
+window.slideshow = setInterval(() => {
 
-current++;
+    document.getElementById("slide" + current).classList.remove("active");
 
-if(current > 11){
-    clearInterval(window.slideshow);
-    document.getElementById("slide11").classList.remove("active");
-    document.getElementById("cakePage").style.display = "flex";
-    return;
-}
+    current++;
 
-document.getElementById("slide"+current).classList.add("active");
+    if (current > 11) {
+        clearInterval(window.slideshow);
 
-},12000);
+        document.getElementById("slide11").classList.remove("active");
+
+        document.getElementById("cakePage").style.display = "flex";
+
+        return;
+    }
+
+    document.getElementById("slide" + current).classList.add("active");
+
+}, 12000);
 }else{
 alert("Wrong Password ❤️");
 }
