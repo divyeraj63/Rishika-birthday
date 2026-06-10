@@ -19,7 +19,7 @@ overflow:hidden;
 color:white;
 }
 
-/* stars background */
+/* stars */
 .stars{
 position:fixed;
 width:100%;
@@ -63,13 +63,6 @@ to{opacity:1;}
 h1{font-size:3rem;margin-bottom:20px;}
 p{max-width:800px;font-size:1.3rem;line-height:1.8;}
 
-img{
-max-width:80%;
-max-height:65vh;
-border-radius:20px;
-box-shadow:0 0 25px rgba(255,255,255,0.4);
-}
-
 input{
 padding:15px;
 border:none;
@@ -92,7 +85,6 @@ position:fixed;
 bottom:-50px;
 font-size:24px;
 animation:floatHeart 8s linear forwards;
-z-index:9999;
 }
 
 @keyframes floatHeart{
@@ -109,12 +101,12 @@ left:0;
 width:100%;
 height:100%;
 background:rgba(0,0,0,0.95);
-z-index:99999;
 justify-content:center;
 align-items:center;
 flex-direction:column;
 text-align:center;
 padding:20px;
+z-index:9999;
 }
 
 /* buttons */
@@ -122,15 +114,15 @@ padding:20px;
 position:fixed;
 z-index:9999;
 padding:10px 15px;
-border-radius:10px;
 border:none;
+border-radius:10px;
 cursor:pointer;
 }
 
 .secretBtn{bottom:15px;right:15px;opacity:0.7;}
 .quizBtn{top:15px;right:15px;}
 
-/* cake */
+/* cake + fireworks */
 #cakePage,#fireworksPage{
 display:none;
 position:fixed;
@@ -145,6 +137,7 @@ flex-direction:column;
 text-align:center;
 z-index:99999;
 }
+
 </style>
 </head>
 
@@ -155,23 +148,23 @@ z-index:99999;
 <!-- LOGIN -->
 <div class="page active" id="login">
 <h1>❤️ A Surprise For Gullumullu ❤️</h1>
-<p>Enter the secret password</p>
+<p>Enter password</p>
 <input id="password" type="password">
 <button onclick="checkPass()">Enter</button>
 </div>
 
 <!-- SLIDES -->
 <div class="page" id="slide1"><h1>Happy Birthday ❤️</h1><p>Some people become memories...</p></div>
-<div class="page" id="slide2"><p>Life somehow brought us back together...</p></div>
-<div class="page" id="slide3"><p>Our story is made of moments ❤️</p></div>
-<div class="page" id="slide4"><p>First memories together ❤️</p></div>
-<div class="page" id="slide5"><p>Every smile matters ❤️</p></div>
-<div class="page" id="slide6"><p>You made life special ❤️</p></div>
-<div class="page" id="slide7"><p>Every talk = favorite moment</p></div>
-<div class="page" id="slide8"><p>Best memories forever ❤️</p></div>
+<div class="page" id="slide2"><p>Life brought us back together...</p></div>
+<div class="page" id="slide3"><p>Our story ❤️</p></div>
+<div class="page" id="slide4"><p>Beautiful moments ❤️</p></div>
+<div class="page" id="slide5"><p>Smiles forever ❤️</p></div>
+<div class="page" id="slide6"><p>Special days ❤️</p></div>
+<div class="page" id="slide7"><p>Best talks ❤️</p></div>
+<div class="page" id="slide8"><p>Memories ❤️</p></div>
 <div class="page" id="slide9"><p>Thank you ❤️</p></div>
 <div class="page" id="slide10"><p>Happy Birthday 🎂</p></div>
-<div class="page" id="slide11"><p>Forever cheering for you ❤️</p></div>
+<div class="page" id="slide11"><p>Forever cheering ❤️</p></div>
 
 <!-- SPOTIFY -->
 <iframe style="position:fixed;bottom:10px;left:10px;border-radius:12px;"
@@ -185,12 +178,11 @@ width="300" height="80"></iframe>
 <!-- POPUPS -->
 <div class="popup" id="secretPopup">
 <h1>I knew you'd click it 😭❤️</h1>
-<p>Thank you for everything ❤️</p>
+<p>Thank you ❤️</p>
 <button onclick="closeSecret()">Aww ❤️</button>
 </div>
 
 <div class="popup" id="quizPopup">
-<h1>❤️ Quiz ❤️</h1>
 <div id="quizContent"></div>
 </div>
 
@@ -218,17 +210,22 @@ width="300" height="80"></iframe>
 
 let current = 1;
 
-/* LOGIN + SLIDES */
+/* PASSWORD + SLIDES */
 function checkPass(){
 let pass = document.getElementById("password").value;
 
 if(pass === "2512"){
+
 document.getElementById("login").classList.remove("active");
 document.getElementById("slide1").classList.add("active");
 
+current = 1;
+
 window.slideshow = setInterval(()=>{
 
-document.getElementById("slide"+current).classList.remove("active");
+let oldSlide = document.getElementById("slide"+current);
+if(oldSlide) oldSlide.classList.remove("active");
+
 current++;
 
 if(current > 11){
@@ -237,9 +234,10 @@ document.getElementById("cakePage").style.display="flex";
 return;
 }
 
-document.getElementById("slide"+current).classList.add("active");
+let newSlide = document.getElementById("slide"+current);
+if(newSlide) newSlide.classList.add("active");
 
-},3000);
+},2500);
 
 }else{
 alert("Wrong Password ❤️");
@@ -248,10 +246,10 @@ alert("Wrong Password ❤️");
 
 /* HEARTS */
 setInterval(()=>{
-let heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML=["❤️","💖","💗","💕"][Math.floor(Math.random()*4)];
-heart.style.left=Math.random()*100+"vw";
+let heart = document.createElement("div");
+heart.className = "heart";
+heart.innerHTML = ["❤️","💖","💗","💕"][Math.floor(Math.random()*4)];
+heart.style.left = Math.random()*100+"vw";
 document.body.appendChild(heart);
 setTimeout(()=>heart.remove(),8000);
 },2000);
@@ -265,32 +263,34 @@ document.getElementById("secretPopup").style.display="none";
 }
 
 /* QUIZ */
-let questions=[
+let q = 0;
+let questions = [
 "Who is more dramatic?",
-"How long is our 5 min talk?",
 "Who misses more?",
-"Best skill?"
+"Best skill?",
+"How long is our 5 min talk?"
 ];
 
-let q=0;
-
 function openQuiz(){
-q=0;
+q = 0;
 document.getElementById("quizPopup").style.display="flex";
 showQ();
 }
 
 function showQ(){
-if(q>=questions.length){
-document.getElementById("quizContent").innerHTML=
-`<h2>Result ❤️</h2><p>You are Gullumullu ❤️</p>
-<button onclick="closeQuiz()">Close</button>`;
+if(q >= questions.length){
+document.getElementById("quizContent").innerHTML = `
+<h2>Result ❤️</h2>
+<p>You are Gullumullu ❤️</p>
+<button onclick="closeQuiz()">Close</button>
+`;
 return;
 }
 
-document.getElementById("quizContent").innerHTML=
-`<p>${questions[q]}</p>
-<button onclick="nextQ()">Answer</button>`;
+document.getElementById("quizContent").innerHTML = `
+<p>${questions[q]}</p>
+<button onclick="nextQ()">Next</button>
+`;
 }
 
 function nextQ(){
@@ -303,15 +303,15 @@ document.getElementById("quizPopup").style.display="none";
 }
 
 /* CAKE */
-let candles=0;
+let candles = 0;
 
 function blow(el){
-if(el.innerHTML==="💨") return;
-el.innerHTML="💨";
+if(el.innerHTML === "💨") return;
+el.innerHTML = "💨";
 candles++;
 
-if(candles===5){
-document.getElementById("wishText").innerHTML="Wish granted ❤️";
+if(candles === 5){
+document.getElementById("wishText").innerHTML = "Wish granted ❤️";
 setTimeout(()=>{
 document.getElementById("cakePage").style.display="none";
 document.getElementById("fireworksPage").style.display="flex";
