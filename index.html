@@ -159,14 +159,15 @@ window.slideshow = setInterval(() => {
 
     current++;
 
-    if (current > 11) {
-        clearInterval(window.slideshow);
+    clearInterval(window.slideshow);
 
-        document.getElementById("slide11").classList.remove("active");
+let lastSlide = document.getElementById("slide11");
+if (lastSlide) lastSlide.classList.remove("active");
 
-        document.getElementById("cakePage").style.display = "flex";
+let cake = document.getElementById("cakePage");
+if (cake) cake.style.display = "flex";
 
-        return;
+return;
     }
 
     document.getElementById("slide" + current).classList.add("active");
