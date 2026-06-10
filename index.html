@@ -159,15 +159,28 @@ window.slideshow = setInterval(() => {
 
     current++;
 
-    clearInterval(window.slideshow);
+    window.slideshow = setInterval(() => {
 
-let lastSlide = document.getElementById("slide11");
-if (lastSlide) lastSlide.classList.remove("active");
+    document.getElementById("slide" + current).classList.remove("active");
 
-let cake = document.getElementById("cakePage");
-if (cake) cake.style.display = "flex";
+    current++;
 
-return;
+    if (current > 11) {
+
+        clearInterval(window.slideshow);
+
+        let lastSlide = document.getElementById("slide11");
+        if (lastSlide) lastSlide.classList.remove("active");
+
+        let cake = document.getElementById("cakePage");
+        if (cake) cake.style.display = "flex";
+
+        return;
+    }
+
+    document.getElementById("slide" + current).classList.add("active");
+
+}, 12000);
     }
 
     document.getElementById("slide" + current).classList.add("active");
@@ -509,4 +522,4 @@ text-align:center;
 
 </div> </body>
 </html>
-document.getElementById("cakePage").style.display = "flex";
+
