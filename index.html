@@ -1,7 +1,29 @@
 <!DOCTYPE html><html lang="en">  <head>  
 <meta charset="UTF-8">  
 <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-<title>Happy Birthday Gullumullu ❤️</title><style>  
+<title>Happy Birthday Gullumullu ❤️</title>#progress{
+position:fixed;
+top:0;
+left:0;
+height:5px;
+width:0%;
+background:#ff4d6d;
+z-index:999;
+transition:12s linear;
+}
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:floatUp 8s linear infinite;
+opacity:0.8;
+}
+
+@keyframes floatUp{
+from{ transform:translateY(0); opacity:1; }
+to{ transform:translateY(-110vh); opacity:0; }
+}<style>  
 *{  
 margin:0;  
 padding:0;  
