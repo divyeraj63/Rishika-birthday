@@ -251,7 +251,7 @@ Your Baccha 🙈
 
 }
 
-document.getElementById("slide"+current).classList.add("active");
+document.getElementById("slide"+current).classList.add("active");restartProgress();
 
 },12000);
 }else{
@@ -310,5 +310,19 @@ heart.remove();
 }
 
 setInterval(createHeart,1000);
-</script></body>  
+</script><script>
+
+function restartProgress(){
+  let bar = document.getElementById("progress");
+
+  bar.style.transition = "none";
+  bar.style.width = "0%";
+
+  void bar.offsetWidth;
+
+  bar.style.transition = "12s linear";
+  bar.style.width = "100%";
+}
+
+// rest of your code...</body>  
 </html>
