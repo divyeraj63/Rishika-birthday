@@ -189,12 +189,13 @@ document.getElementById("login").classList.remove("active");
 document.getElementById("slide1").classList.add("active");
   restartProgress();
 
-setInterval(()=>{
+let slideTimer = setInterval(()=>{
 document.getElementById("slide"+current).classList.remove("active");
 
 current++;
 
 if(current>11){
+clearInterval(slideTimer);
 
 document.body.innerHTML = `
 
