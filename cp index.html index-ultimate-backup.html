@@ -119,6 +119,21 @@ border:none;
 border-radius:12px;
 cursor:pointer;
 font-size:18px;
+}.firework{
+position:fixed;
+font-size:30px;
+animation:boom 2s linear forwards;
+}
+
+@keyframes boom{
+from{
+transform:scale(0);
+opacity:1;
+}
+to{
+transform:scale(3);
+opacity:0;
+}
 }
 </style></head><body><div id="progress"></div><div class="stars"></div><div class="page active" id="login">
 
@@ -132,7 +147,7 @@ font-size:18px;
 <br>  <button onclick="dontClick()">🚫 Don't Click</button>
 
 </div><div class="page" id="slide1">  
-<h1>Happy Birthday Rishika ❤️</h1>  
+<h1 id="typing"></h1>  
 <p>  
 Some people become memories.  
 Some become lessons.  
@@ -186,7 +201,7 @@ let pass=document.getElementById("password").value;
 
 if(pass==="2512"){
 document.getElementById("login").classList.remove("active");
-document.getElementById("slide1").classList.add("active");
+document.getElementById("slide1").classList.add("active");typeText();
   restartProgress();
 
 let slideTimer = setInterval(()=>{
@@ -195,7 +210,13 @@ document.getElementById("slide"+current).classList.remove("active");
 current++;
 
 if(current>11){
-clearInterval(slideTimer);
+clearInterval(slideTimer);for(let i=0;i<20;i++){
+
+setTimeout(()=>{
+createFirework();
+},i*300);
+
+}
 
 document.body.innerHTML = `
 
@@ -311,8 +332,11 @@ No matter the answers...
 You're still my favorite person ❤️
 </p>
 
-<button onclick="location.reload()">Back</button>
+<button onclick="openGift()">🎁 Open Your Gift</button>
 
+<br><br>
+
+<button onclick="location.reload()">Back</button>
 </div>
 `;
 return;
@@ -322,7 +346,49 @@ showQuestion();
 }
 
 showQuestion();
-  } function dontClick(){
+  }function openGift(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+">
+
+<h1>🎁 Surprise 🎁</h1>
+
+<p style="font-size:24px;line-height:1.8;">
+
+Happy Birthday Gullumullu ❤️
+
+You are one of my favorite people.
+
+Thank you for every laugh,
+every memory,
+and every moment.
+
+Love,
+
+Your Baccha 🙈
+
+</p>
+
+<button onclick="location.reload()">
+❤️ Back
+</button>
+
+</div>
+
+`;
+
+} function dontClick(){
 
 document.body.innerHTML = `
 
@@ -337,7 +403,24 @@ Winner:
 </div>  
 `;  
   }  
-function createHeart(){
+function createFirework(){
+
+let firework=document.createElement("div");
+
+firework.innerHTML="💖";
+
+firework.className="firework";
+
+firework.style.left=Math.random()*100+"vw";
+firework.style.top=Math.random()*100+"vh";
+
+document.body.appendChild(firework);
+
+setTimeout(()=>{
+firework.remove();
+},2000);
+
+  } function createHeart(){
 
 let heart=document.createElement("div");
 
@@ -368,6 +451,26 @@ function restartProgress(){
 
   bar.style.transition = "12s linear";
   bar.style.width = "100%";
+}
+
+function typeText(){
+
+let text = "Happy Birthday Rishika ❤️";
+let i = 0;
+
+document.getElementById("typing").innerHTML = "";
+
+let typing = setInterval(function(){
+
+if(i < text.length){
+document.getElementById("typing").innerHTML += text.charAt(i);
+i++;
+}else{
+clearInterval(typing);
+}
+
+},100);
+
 }
 
 </script>
