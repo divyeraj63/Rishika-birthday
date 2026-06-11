@@ -89,7 +89,37 @@ border-radius:12px;
 cursor:pointer;
 font-size:18px;
 }
-</style></head><body><div class="stars"></div><div class="page active" id="login">
+</style> #progress{
+position:fixed;
+top:0;
+left:0;
+height:5px;
+width:0%;
+background:#ff4d6d;
+z-index:999;
+transition:12s linear;
+}
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:floatUp 8s linear infinite;
+opacity:0.8;
+pointer-events:none;
+z-index:999;
+}
+
+@keyframes floatUp{
+from{
+transform:translateY(0);
+opacity:1;
+}
+to{
+transform:translateY(-110vh);
+opacity:0;
+}
+} </head><body><div class="stars"></div><div class="page active" id="login">
 <h1>❤️ A Surprise For Gullumullu ❤️</h1>
 <p>Enter the secret password</p>
 <input id="password" type="password">
