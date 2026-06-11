@@ -88,7 +88,7 @@ border-radius:12px;
 cursor:pointer;
 font-size:18px;
 }
-</style></head><body><div class="stars"></div><div class="page active" id="login">
+</style></head><body><div id="progress"></div><div class="stars"></div><div class="page active" id="login">
 
 <h1>❤️ A Surprise For Gullumullu ❤️</h1>  
 <p>Enter the secret password</p>  
@@ -254,5 +254,24 @@ Winner:
 </div>  
 `;  
   }  
+function createHeart(){
+
+let heart=document.createElement("div");
+
+heart.innerHTML="❤️";
+heart.className="heart";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(20+Math.random()*25)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},8000);
+
+}
+
+setInterval(createHeart,1000);
 </script></body>  
 </html>
