@@ -275,49 +275,5 @@ alert("Wrong Password ❤️");
 }
 }
 
-let current = 1;
-
-function checkPass(){
-let pass=document.getElementById("password").value;
-
-if(pass==="2512"){
-document.getElementById("login").classList.remove("active");
-document.getElementById("slide1").classList.add("active");
-
-setInterval(()=>{
-document.getElementById("slide"+current).classList.remove("active");
-
-
-
-let current = 1;
-let heartInterval;
-let slideInterval;
-
-function createHeart(){
-let heart=document.createElement("div");
-heart.innerHTML="❤️";
-heart.className="heart";
-
-heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=(18+Math.random()*25)+"px";
-
-document.body.appendChild(heart);
-
-setTimeout(()=>heart.remove(),8000);
-}
-
-function startHearts(){
-heartInterval=setInterval(createHeart,900);
-}
-
-function stopHearts(){
-clearInterval(heartInterval);
-}
-
-function checkPass(){
-let pass=document.getElementById("password").value;
-
-if(pass==="2512"){
-
 
 </html>
