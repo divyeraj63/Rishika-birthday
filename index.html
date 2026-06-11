@@ -261,23 +261,63 @@ alert("Wrong Password ❤️");
 }
 function openQuiz(){
 
+function openQuiz(){
+
+let questions = [
+"Who is more dramatic? 😭",
+"Who gets distracted while studying? 📚🤣",
+"Who misses the other more? ❤️",
+"Who is more stubborn? 😤",
+"Who traumatized Jay more? 😂"
+];
+
+let currentQ = 0;
+
+function showQuestion(){
+
 document.body.innerHTML = `
 <div style="background:black;color:white;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;">
 
 <h1>❤️ Our Quiz ❤️</h1>
-<p>Who is more dramatic? 🤣</p>
 
-<button onclick="document.getElementById('msg').innerText='😂 Nice ❤️'">Me 😭</button>
-<button onclick="document.getElementById('msg').innerText='😂 Nice ❤️'">You 😭</button>
+<p style="font-size:24px;">${questions[currentQ]}</p>
 
-<p id="msg" style="margin-top:20px;"></p>
+<button onclick="nextQuestion()">Me 😭</button>
+<button onclick="nextQuestion()">You ❤️</button>
 
-<br>
+</div>
+`;
+}
+
+window.nextQuestion = function(){
+
+currentQ++;
+
+if(currentQ >= questions.length){
+
+document.body.innerHTML = `
+<div style="background:black;color:white;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;">
+
+<h1>💖 Quiz Complete 💖</h1>
+
+<p>
+No matter the answers...
+
+You're still my favorite person ❤️
+</p>
+
 <button onclick="location.reload()">Back</button>
 
 </div>
 `;
-}  function dontClick(){
+return;
+}
+
+showQuestion();
+}
+
+showQuestion();
+  } function dontClick(){
 
 document.body.innerHTML = `
 
