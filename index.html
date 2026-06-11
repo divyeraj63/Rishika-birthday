@@ -119,6 +119,21 @@ border:none;
 border-radius:12px;
 cursor:pointer;
 font-size:18px;
+}.firework{
+position:fixed;
+font-size:30px;
+animation:boom 2s linear forwards;
+}
+
+@keyframes boom{
+from{
+transform:scale(0);
+opacity:1;
+}
+to{
+transform:scale(3);
+opacity:0;
+}
 }
 </style></head><body><div id="progress"></div><div class="stars"></div><div class="page active" id="login">
 
@@ -195,7 +210,13 @@ document.getElementById("slide"+current).classList.remove("active");
 current++;
 
 if(current>11){
-clearInterval(slideTimer);
+clearInterval(slideTimer);for(let i=0;i<20;i++){
+
+setTimeout(()=>{
+createFirework();
+},i*300);
+
+}
 
 document.body.innerHTML = `
 
@@ -382,7 +403,24 @@ Winner:
 </div>  
 `;  
   }  
-function createHeart(){
+function createFirework(){
+
+let firework=document.createElement("div");
+
+firework.innerHTML="🎆";
+
+firework.className="firework";
+
+firework.style.left=Math.random()*100+"vw";
+firework.style.top=Math.random()*100+"vh";
+
+document.body.appendChild(firework);
+
+setTimeout(()=>{
+firework.remove();
+},2000);
+
+  } function createHeart(){
 
 let heart=document.createElement("div");
 
