@@ -311,8 +311,11 @@ No matter the answers...
 You're still my favorite person ❤️
 </p>
 
-<button onclick="location.reload()">Back</button>
+<button onclick="openGift()">🎁 Open Your Gift</button>
 
+<br><br>
+
+<button onclick="location.reload()">Back</button>
 </div>
 `;
 return;
@@ -322,7 +325,49 @@ showQuestion();
 }
 
 showQuestion();
-  } function dontClick(){
+  }function openGift(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+">
+
+<h1>🎁 Surprise 🎁</h1>
+
+<p style="font-size:24px;line-height:1.8;">
+
+Happy Birthday Gullumullu ❤️
+
+You are one of my favorite people.
+
+Thank you for every laugh,
+every memory,
+and every moment.
+
+Love,
+
+Your Baccha 🙈
+
+</p>
+
+<button onclick="location.reload()">
+❤️ Back
+</button>
+
+</div>
+
+`;
+
+} function dontClick(){
 
 document.body.innerHTML = `
 
