@@ -7,12 +7,44 @@ margin:0;
 padding:0;  
 box-sizing:border-box;  
 font-family:Arial,sans-serif;  
-}  body{
+}
+
+  
+body{
 background:black;
 overflow:hidden;
 color:white;
 }
 
+#progress{
+position:fixed;
+top:0;
+left:0;
+height:5px;
+width:0%;
+background:#ff4d6d;
+z-index:999;
+transition:12s linear;
+}
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:floatUp 8s linear infinite;
+opacity:0.8;
+}
+
+@keyframes floatUp{
+from{
+transform:translateY(0);
+opacity:1;
+}
+to{
+transform:translateY(-110vh);
+opacity:0;
+}
+}
 .stars{
 position:fixed;
 width:100%;
@@ -154,7 +186,8 @@ let pass=document.getElementById("password").value;
 
 if(pass==="2512"){
 document.getElementById("login").classList.remove("active");
-document.getElementById("slide1").classList.add("active");
+document.getElementById("slide1").classList.add("active");document.getElementById("progress").style.width="100%";
+  
 
 setInterval(()=>{
 document.getElementById("slide"+current).classList.remove("active");
