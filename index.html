@@ -261,17 +261,21 @@ alert("Wrong Password ❤️");
 function openQuiz(){
 
 document.body.innerHTML = `
+<div style="background:black;color:white;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;">
 
-<div style="background:black;color:white;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;">  <h1>❤️ Our Quiz ❤️</h1>  <p>Who is more dramatic? 🤣</p>  <button onclick="alert('No wrong answer 😭❤️')">Me 😭</button>
+<h1>❤️ Our Quiz ❤️</h1>
+<p>Who is more dramatic? 🤣</p>
 
-<button onclick="alert('No wrong answer 😭❤️')">You 😭</button>
+<button onclick="document.getElementById('msg').innerText='😂 Nice ❤️'">Me 😭</button>
+<button onclick="document.getElementById('msg').innerText='😂 Nice ❤️'">You 😭</button>
 
-<br><br>
+<p id="msg" style="margin-top:20px;"></p>
 
-<button onclick="location.reload()">⬅ Back</button>
+<br>
+<button onclick="location.reload()">Back</button>
 
-</div>  
-`;  
+</div>
+`;
 }  function dontClick(){
 
 document.body.innerHTML = `
