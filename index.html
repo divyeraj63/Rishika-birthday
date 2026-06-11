@@ -186,7 +186,107 @@ src="https://open.spotify.com/embed/track/1hQia6rxgfM1ly2hE3StWp"
 width="300"
 height="80"
 allow="autoplay; clipboard-write; encrypted-media; fullscreen">
-</iframe> let current = 1;
+</iframe>
+
+<script>
+let current = 1;
+let heartInterval;
+let slideInterval;
+
+function createHeart(){
+let heart=document.createElement("div");
+heart.innerHTML="❤️";
+heart.className="heart";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(18+Math.random()*25)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},8000);
+}
+
+function startHearts(){
+heartInterval=setInterval(createHeart,900);
+}
+
+function stopHearts(){
+clearInterval(heartInterval);
+}
+
+function checkPass(){
+let pass=document.getElementById("password").value;
+
+if(pass==="2512"){
+
+document.getElementById("login").classList.remove("active");
+document.getElementById("slide1").classList.add("active");
+
+document.getElementById("progress").style.width="100%";
+
+startHearts();
+
+slideInterval=setInterval(()=>{
+document.getElementById("slide"+current).classList.remove("active");
+
+current++;
+
+if(current>11){
+
+clearInterval(slideInterval);
+stopHearts();
+
+document.body.innerHTML=`
+<div style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:30px;
+text-align:center;
+font-family:Arial,sans-serif;
+color:black;
+">
+
+<h1 style="font-size:3rem;">
+I Love You Rishika ❤️
+</h1>
+
+<p style="font-size:1.4rem;max-width:800px;line-height:1.8;">
+I truly love you.
+Forgive me for every mistake I've made.
+Please stay with me always.
+You are one of the biggest reasons I want to become better every day.
+Not only for myself... but for us.
+Every moment, laugh, fight, memory means more than I can explain.
+Happy Birthday Gullumullu ❤️
+Forever yours, Your Baccha 🙈
+</p>
+
+</div>`;
+return;
+}
+
+document.getElementById("slide"+current).classList.add("active");
+
+},12000);
+
+}else{
+alert("Wrong Password ❤️");
+}
+}
+</script>
+
+</body>
+</html>
 let heartInterval;
 let slideInterval;
 
