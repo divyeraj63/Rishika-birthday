@@ -266,7 +266,11 @@ Happy Birthday Gullumullu ❤️
 
 Forever yours,
 
-Your Baccha 🙈
+Your Baccha 🙈 <br><br>
+
+<button onclick="secretLetter()">
+💌 Secret Letter
+</button>
 
 </p>  </div>  
 `;  return;
@@ -388,6 +392,54 @@ Your Baccha 🙈
 
 `;
 
+}function secretLetter(){
+
+document.body.innerHTML=`
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+">
+
+<h1>💌 Dear Gullumullu</h1>
+
+<p style="font-size:22px;line-height:1.8;max-width:800px;">
+
+Thank you for every memory.
+
+Road No. 3.
+
+The random talks.
+
+The laughs.
+
+The study sessions.
+
+The moments that became memories.
+
+No matter where life takes us,
+
+you'll always be someone special to me ❤️
+
+— Your Baccha 🙈
+
+</p>
+
+<button onclick="location.reload()">
+❤️ Back
+</button>
+
+</div>
+
+`;
+
 } function dontClick(){
 
 document.body.innerHTML = `
@@ -407,7 +459,10 @@ function createFirework(){
 
 let firework=document.createElement("div");
 
-firework.innerHTML="💖";
+let effects=["💖","🎊","✨","❤️"];
+
+firework.innerHTML=
+effects[Math.floor(Math.random()*effects.length)];
 
 firework.className="firework";
 
@@ -438,7 +493,27 @@ heart.remove();
 
 }
 
-setInterval(createHeart,1000);
+setInterval(createHeart,1000);function createRose(){
+
+let rose=document.createElement("div");
+
+rose.innerHTML="🌹";
+
+rose.style.position="fixed";
+rose.style.top="-20px";
+rose.style.left=Math.random()*100+"vw";
+rose.style.fontSize="30px";
+rose.style.animation="floatUp 10s linear";
+
+document.body.appendChild(rose);
+
+setTimeout(()=>{
+rose.remove();
+},10000);
+
+}
+
+setInterval(createRose,3000);
 </script><script>
 
 function restartProgress(){
