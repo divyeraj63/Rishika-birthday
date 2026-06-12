@@ -189,14 +189,16 @@ And I’m grateful every day that it happened.
 Forever cheering for you.<br>  
 From ur baccha 🙈  
 </p>  
-</div><audio autoplay loop>
+</div><audio id="bgmusic" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio>
 <source src="song.mp3" type="audio/mpeg">
 </audio><script>  let current = 1;
 
 function checkPass(){
 let pass=document.getElementById("password").value;
 
-if(pass==="2512"){
+if(pass==="2512"){document.getElementById("bgmusic").play();
 document.getElementById("login").classList.remove("active");
 document.getElementById("slide1").classList.add("active");typeText();
   restartProgress();
