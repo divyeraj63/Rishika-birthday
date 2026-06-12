@@ -87,6 +87,15 @@ from{opacity:0;}
 to{opacity:1;}
 }
 
+@keyframes credits{
+from{
+transform:translateY(100%);
+}
+to{
+transform:translateY(-120%);
+}
+}  
+  
 h1{
 font-size:3rem;
 margin-bottom:20px;
@@ -272,7 +281,9 @@ Your Baccha 🙈 <br><br>
 </button>
 
 </p>  </div>  
-`;  return;
+`;
+setTimeout(showCredits,15000);
+return;
 
 }
 
@@ -547,6 +558,85 @@ clearInterval(typing);
 
 }
 
-</script>
+function showCredits(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+overflow:hidden;
+position:relative;
+">
+
+<div style="
+position:absolute;
+width:100%;
+text-align:center;
+animation:credits 25s linear forwards;
+font-size:28px;
+line-height:2;
+">
+
+<br><br><br><br><br><br>
+
+🎬 Happy Birthday Gullumullu ❤️
+
+<br><br>
+
+Starring
+
+<br>
+
+Rishika ❤️
+
+<br><br>
+
+Featuring
+
+<br>
+
+Your Baccha 🙈
+
+<br><br>
+
+Special Thanks
+
+<br>
+
+Road No. 3 ❤️
+
+<br>
+
+Study Sessions 📚🤣
+
+<br>
+
+Random Talks 🌙
+
+<br>
+
+All Our Memories 💖
+
+<br><br>
+
+Directed By
+
+<br>
+
+Your Baccha 🙈
+
+<br><br>
+
+The End ❤️
+
+</div>
+
+</div>
+
+`;
+
+}</script>
 </body>
 </html>
