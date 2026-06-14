@@ -233,7 +233,7 @@ document.getElementById("slide"+current).classList.remove("active");
 
 current++;
 
-if(current>11){
+if(current>11){ let music = document.getElementById("bgmusic");
 clearInterval(slideTimer);for(let i=0;i<20;i++){
 
 setTimeout(()=>{
@@ -297,8 +297,9 @@ Your Baccha 🙈 <br><br>
 </button>
 
 </p>  </div>  
-`;
-setTimeout(showCredits,15000);
+`; document.body.appendChild(music);
+music.play();
+setTimeout(showCredits,30000);
 return;
 
 }
@@ -701,6 +702,12 @@ Your Baccha 🙈
 <br><br>
 
 The End ❤️
+
+<br><br>
+
+<button onclick="location.reload()">
+🔄 Start Over
+</button>
 
 </div>
 
