@@ -419,7 +419,36 @@ Your Baccha 🙈
 
 `;
 
-}function secretLetter(){
+}function showLovePage(){
+
+document.body.innerHTML = `
+
+<div style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:30px;
+text-align:center;
+color:black;
+"><h1>I Love You Rishika ❤️</h1><p>
+I truly love you.Happy Birthday Gullumullu ❤️
+
+Forever yours,
+
+Your Baccha 🙈
+
+</p><button onclick="secretLetter()">
+💌 Secret Letter
+</button></div>`;
+
+} function secretLetter(){
 
 document.body.innerHTML=`
 
@@ -459,7 +488,7 @@ you'll always be someone special to me ❤️
 
 </p>
 
-<button onclick="secretLetterClose()">
+<button onclick="showLovePage()">
 ❤️ Back
 </button>
 </div>
