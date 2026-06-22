@@ -219,11 +219,13 @@ From ur baccha 🙈
 </audio>
 <source src="song.mp3" type="audio/mpeg">
 </audio><script>  let current = 1;
+let music;
 
 function checkPass(){
 let pass=document.getElementById("password").value;
 
-if(pass==="2512"){document.getElementById("bgmusic").play();
+if(pass==="2512")music = document.getElementById("bgmusic");
+music.play();
 document.getElementById("login").classList.remove("active");
 document.getElementById("slide1").classList.add("active");typeText();
   restartProgress();
@@ -233,7 +235,7 @@ document.getElementById("slide"+current).classList.remove("active");
 
 current++;
 
-if(current>11){ let music = document.getElementById("bgmusic");
+if(current>11){ 
 clearInterval(slideTimer);for(let i=0;i<20;i++){
 
 setTimeout(()=>{
@@ -418,6 +420,9 @@ Your Baccha 🙈
 
 `;
 
+document.body.appendChild(music);
+music.play();  
+
 }function showLovePage(){
 
 document.body.innerHTML = `
@@ -450,6 +455,9 @@ Your Baccha 🙈
 </button><button onclick="showCredits()">
 🎬 View Credits
 </button></div>`;
+
+document.body.appendChild(music);
+music.play();
 
 } function secretLetter(){
 
@@ -691,6 +699,9 @@ flex-direction:column;
 ❤️ Back
 </button></div>`;
 
+document.body.appendChild(music);
+music.play();
+
 }
   
 function sadLetter(){
@@ -722,6 +733,9 @@ And I'm proud of you.
 </p><button onclick="openLetters()">
 ❤️ Back
 </button></div>`;
+
+document.body.appendChild(music);
+music.play();
 
 }
   
@@ -763,6 +777,9 @@ those memories will always be special to me ❤️
 ❤️ Back
 </button></div>`;
 
+document.body.appendChild(music);
+music.play();
+
 }
   
 function motivationLetter(){
@@ -802,6 +819,9 @@ I'll always be cheering for you.
 </p><button onclick="openLetters()">
 ❤️ Back
 </button></div>`;
+
+document.body.appendChild(music);
+music.play();
 
   }
   
@@ -888,6 +908,9 @@ The End ❤️
 </div>
 
 `;
+
+document.body.appendChild(music);
+music.play();
 
 }window.onload = function(){
 
