@@ -217,13 +217,12 @@ From ur baccha 🙈
 </div><audio id="bgmusic" loop>
   <source src="song.mp3" type="audio/mpeg">
 </audio><script>  let current = 1;
-let music;
+let music; window.music = document.getElementById("bgmusic");
 
 function checkPass(){
 let pass=document.getElementById("password").value;
 
-if(pass==="2512"){music = document.getElementById("bgmusic");
-music.play().catch(()=>{});
+if(pass==="2512"){music.play().catch(()=>{});
 document.getElementById("login").classList.remove("active");
 document.getElementById("slide1").classList.add("active");typeText();
   restartProgress();
@@ -418,7 +417,9 @@ Your Baccha 🙈
 
 `;
 
-music.play();  
+if(music.paused){
+    music.play().catch(()=>{});
+  }
 
 }function showLovePage(){
 
@@ -468,7 +469,9 @@ Your Baccha 🙈
 
 </div></div>`;
 
-music.play();
+if(music.paused){
+    music.play().catch(()=>{});
+}
 
 } function secretLetter(){
 
@@ -517,7 +520,9 @@ you'll always be someone special to me ❤️
 
 `;
 
-music.play();
+if(music.paused){
+    music.play().catch(()=>{});
+  }
 
 } function appreciate(){
 
@@ -709,7 +714,9 @@ flex-direction:column;
 ❤️ Back
 </button></div>`;
 
-music.play();
+if(music.paused){
+    music.play().catch(()=>{});
+  }
 
 }
   
@@ -743,7 +750,9 @@ And I'm proud of you.
 ❤️ Back
 </button></div>`;
 
-music.play();
+if(music.paused){
+    music.play().catch(()=>{});
+}
 
 }
   
@@ -785,7 +794,9 @@ those memories will always be special to me ❤️
 ❤️ Back
 </button></div>`;
 
-music.play();
+if(music.paused){
+    music.play().catch(()=>{});
+}
 
 }
   
@@ -827,7 +838,9 @@ I'll always be cheering for you.
 ❤️ Back
 </button></div>`;
 
-music.play();
+if(music.paused){
+    music.play().catch(()=>{});
+  }
 
   }
   
@@ -916,7 +929,9 @@ The End ❤️
 `;
 
 
-music.play();
+if(music.paused){
+    music.play().catch(()=>{});
+}
 
 }let candlesBlown = 0;
 
