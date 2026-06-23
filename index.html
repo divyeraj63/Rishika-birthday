@@ -451,7 +451,22 @@ Your Baccha 🙈
 💌 Open When Letters
 </button><button onclick="showCredits()">
 🎬 View Credits
-</button></div>`;
+</button><div style="margin-top:30px;">
+🎂<br>
+
+<span onclick="blow(this)" style="font-size:30px;cursor:pointer;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:30px;cursor:pointer;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:30px;cursor:pointer;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:30px;cursor:pointer;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:30px;cursor:pointer;">🕯️</span>
+
+<p id="wishMsg"></p>
+
+</div></div>`;
 
 music.play();
 
@@ -903,7 +918,26 @@ The End ❤️
 
 music.play();
 
-}window.onload = function(){
+}let candlesBlown = 0;
+
+function blow(candle){
+
+candle.innerHTML = "💨";
+
+candlesBlown++;
+
+if(candlesBlown == 5){
+
+document.getElementById("wishMsg").innerHTML =
+"🎉 Make a Wish Gullumullu ❤️ 🎉";
+
+for(let i=0;i<20;i++){
+setTimeout(createFirework,i*200);
+}
+
+}
+
+  } window.onload = function(){
 
 setTimeout(function(){
 
