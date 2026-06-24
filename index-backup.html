@@ -53,7 +53,7 @@ background:
 radial-gradient(white 1px, transparent 1px);
 background-size:50px 50px;
 animation:moveStars 80s linear infinite;
-z-index:-0;
+z-index:-1;
 opacity:0.5;
 }
 
@@ -87,6 +87,15 @@ from{opacity:0;}
 to{opacity:1;}
 }
 
+@keyframes credits{
+from{
+transform:translateY(100%);
+}
+to{
+transform:translateY(-120%);
+}
+}  
+  
 h1{
 font-size:3rem;
 margin-bottom:20px;
@@ -119,8 +128,37 @@ border:none;
 border-radius:12px;
 cursor:pointer;
 font-size:18px;
+}#loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:2rem;
+z-index:9999;
+  }.firework{
+position:fixed;
+font-size:30px;
+animation:boom 2s linear forwards;
 }
-</style></head><body><div id="progress"></div><div class="stars"></div><div class="page active" id="login">
+
+@keyframes boom{
+from{
+transform:scale(0);
+opacity:1;
+}
+to{
+transform:scale(3);
+opacity:0;
+}
+}
+</style></head><body><div id="loader">
+<h1>Loading Memories ❤️</h1>
+</div><div id="progress"></div><div class="stars"></div><div class="page active" id="login">
 
 <h1>❤️ A Surprise For Gullumullu ❤️</h1>  
 <p>Enter the secret password</p>  
@@ -129,10 +167,12 @@ font-size:18px;
 
 <button onclick="openQuiz()">❤️ Our Quiz</button>
 
-<br>  <button onclick="dontClick()">🚫 Don't Click</button>
+<button onclick="appreciate()">🌹 Why You're Special</button>
+
+<button onclick="dontClick()">🚫 Don't Click</button>
 
 </div><div class="page" id="slide1">  
-<h1>Happy Birthday Rishika ❤️</h1>  
+<h1 id="typing"></h1>  
 <p>  
 Some people become memories.  
 Some become lessons.  
@@ -174,27 +214,32 @@ And I’m grateful every day that it happened.
 Forever cheering for you.<br>  
 From ur baccha 🙈  
 </p>  
-</div><iframe style="position:fixed;bottom:10px;left:10px;border-radius:12px;"  
-src="https://open.spotify.com/embed/track/1hQia6rxgfM1ly2hE3StWp"  
-width="300"  
-height="80"  
-allow="autoplay; clipboard-write; encrypted-media; fullscreen">  
-</iframe><script>  let current = 1;
+</div><audio id="bgmusic" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio><script>  let current = 1;
+let music;
 
 function checkPass(){
 let pass=document.getElementById("password").value;
 
-if(pass==="2512"){
+if(pass==="2512"){music = document.getElementById("bgmusic"); music.play().catch(()=>{});
 document.getElementById("login").classList.remove("active");
-document.getElementById("slide1").classList.add("active");document.getElementById("progress").style.width="100%";
-  
+document.getElementById("slide1").classList.add("active");typeText();
+  restartProgress();
 
-setInterval(()=>{
+let slideTimer = setInterval(()=>{
 document.getElementById("slide"+current).classList.remove("active");
 
 current++;
 
-if(current>11){
+if(current>11){ 
+clearInterval(slideTimer);for(let i=0;i<20;i++){
+
+setTimeout(()=>{
+createFirework();
+},i*300);
+
+}
 
 document.body.innerHTML = `
 
@@ -244,35 +289,299 @@ Happy Birthday Gullumullu ❤️
 
 Forever yours,
 
-Your Baccha 🙈
+Your Baccha 🙈 <br><br>
+
+<button onclick="secretLetter()">
+💌 Secret Letter
+</button>
 
 </p>  </div>  
-`;  return;
+`; document.body.appendChild(music);
+music.play();
+return;
 
 }
 
-document.getElementById("slide"+current).classList.add("active");
+document.getElementById("slide"+current).classList.add("active");restartProgress();
 
 },12000);
 }else{
 alert("Wrong Password ❤️");
 }
 }
+
 function openQuiz(){
 
+let questions = [
+"Who is more dramatic? 😭",
+"Who gets distracted while studying? 📚🤣",
+"Who misses the other more? ❤️",
+"Who is more stubborn? 😤",
+"Who traumatized Jay more? 😂",
+
+"Who says 'I'm fine' but isn't? 😭",
+"Who overthinks more? 🤔",
+"Who starts random fights? 😂",
+"Who loves food more? 🍕",
+"Who is the cutest person alive? ❤️"
+];
+
+let currentQ = 0;
+
+function showQuestion(){
+
 document.body.innerHTML = `
+<div style="background:black;color:white;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;">
 
-<div style="background:black;color:white;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;">  <h1>❤️ Our Quiz ❤️</h1>  <p>Who is more dramatic? 🤣</p>  <button onclick="alert('No wrong answer 😭❤️')">Me 😭</button>
+<h1>❤️ Our Quiz ❤️</h1>
 
-<button onclick="alert('No wrong answer 😭❤️')">You 😭</button>
+<p style="font-size:24px;">${questions[currentQ]}</p>
+
+<button onclick="nextQuestion()">Me 😭</button>
+<button onclick="nextQuestion()">You ❤️</button>
+
+</div>
+`;
+}
+
+window.nextQuestion = function(){
+
+currentQ++;
+
+if(currentQ >= questions.length){
+
+document.body.innerHTML = `
+<div style="background:black;color:white;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;">
+
+<h1>💖 Quiz Complete 💖</h1>
+
+<p>
+No matter the answers...
+
+You're still my favorite person ❤️
+</p>
+
+<button onclick="openGift()">🎁 Open Your Gift</button>
 
 <br><br>
 
-<button onclick="location.reload()">⬅ Back</button>
+<button onclick="location.reload()">Back</button>
+</div>
+`;
+return;
+}
 
-</div>  
-`;  
-}  function dontClick(){
+showQuestion();
+}
+
+showQuestion();
+  }function openGift(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+">
+
+<h1>🎁 Surprise 🎁</h1>
+
+<p style="font-size:24px;line-height:1.8;">
+
+Happy Birthday Gullumullu ❤️
+
+You are one of my favorite people.
+
+Thank you for every laugh,
+every memory,
+and every moment.
+
+Love,
+
+Your Baccha 🙈
+
+</p>
+
+<button onclick="location.reload()">
+❤️ Back
+</button>
+
+</div>
+
+`;
+
+if(music.paused){
+    music.play().catch(()=>{});
+  }
+
+}function showLovePage(){
+
+document.body.innerHTML = `
+
+<div style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:30px;
+text-align:center;
+color:black;
+"><h1>I Love You Rishika ❤️</h1><p>
+I truly love you.Happy Birthday Gullumullu ❤️
+
+Forever yours,
+
+Your Baccha 🙈
+
+</p><button onclick="cakePage()">
+🎂 Birthday Cake
+</button><button onclick="secretLetter()">
+💌 Secret Letter
+</button><button onclick="openLetters()">
+💌 Open When Letters
+</button><button onclick="showCredits()">
+🎬 View Credits
+</button><div style="margin-top:30px;">
+🎂<br>
+
+<span onclick="blow(this)" style="font-size:30px;cursor:pointer;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:30px;cursor:pointer;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:30px;cursor:pointer;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:30px;cursor:pointer;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:30px;cursor:pointer;">🕯️</span>
+
+<p id="wishMsg"></p>
+
+</div></div>`;
+
+if(music.paused){
+    music.play().catch(()=>{});
+}
+
+} function secretLetter(){
+
+document.body.innerHTML=`
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+">
+
+<h1>💌 Dear Gullumullu</h1>
+
+<p style="font-size:22px;line-height:1.8;max-width:800px;">
+
+Thank you for every memory.
+
+Road No. 3.
+
+The random talks.
+
+The laughs.
+
+The study sessions.
+
+The moments that became memories.
+
+No matter where life takes us,
+
+you'll always be someone special to me ❤️
+
+— Your Baccha 🙈
+
+</p>
+
+<button onclick="showLovePage()">
+❤️ Back
+</button>
+</div>
+
+`;
+
+if(music.paused){
+    music.play().catch(()=>{});
+  }
+
+} function appreciate(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+overflow:auto;
+">
+
+<h1>🌹 Things I Appreciate About You 🌹</h1>
+
+<p style="font-size:22px;line-height:2;max-width:800px;">
+
+❤️ Your smile
+
+❤️ Your kindness
+
+❤️ The way you care
+
+❤️ Our random conversations
+
+❤️ The memories we've made
+
+❤️ The way you make ordinary days special
+
+❤️ Your patience with me
+
+❤️ The laughs we've shared
+
+❤️ The study sessions
+
+❤️ The food-sharing moments 😭
+
+❤️ Road No. 3 memories
+
+❤️ Simply being you
+
+</p>
+
+<button onclick="location.reload()">
+❤️ Back
+</button>
+
+</div>
+
+`;
+
+} function dontClick(){
 
 document.body.innerHTML = `
 
@@ -287,7 +596,27 @@ Winner:
 </div>  
 `;  
   }  
-function createHeart(){
+function createFirework(){
+
+let firework=document.createElement("div");
+
+let effects=["💖","🎊","✨","❤️"];
+
+firework.innerHTML=
+effects[Math.floor(Math.random()*effects.length)];
+
+firework.className="firework";
+
+firework.style.left=Math.random()*100+"vw";
+firework.style.top=Math.random()*100+"vh";
+
+document.body.appendChild(firework);
+
+setTimeout(()=>{
+firework.remove();
+},2000);
+
+  } function createHeart(){
 
 let heart=document.createElement("div");
 
@@ -305,6 +634,382 @@ heart.remove();
 
 }
 
-setInterval(createHeart,1000);
-</script></body>  
-</html>
+setInterval(createHeart,1000);function createRose(){
+
+let rose=document.createElement("div");
+
+rose.innerHTML="🌹";
+
+rose.style.position="fixed";
+rose.style.top="-20px";
+rose.style.left=Math.random()*100+"vw";
+rose.style.fontSize="30px";
+rose.style.animation="floatUp 10s linear";
+
+document.body.appendChild(rose);
+
+setTimeout(()=>{
+rose.remove();
+},10000);
+
+}
+
+setInterval(createRose,3000);
+</script><script>
+
+function restartProgress(){
+  let bar = document.getElementById("progress");
+
+  bar.style.transition = "none";
+  bar.style.width = "0%";
+
+  void bar.offsetWidth;
+
+  bar.style.transition = "12s linear";
+  bar.style.width = "100%";
+}
+
+function typeText(){
+
+let text = "Happy Birthday Rishika ❤️";
+let i = 0;
+
+document.getElementById("typing").innerHTML = "";
+
+let typing = setInterval(function(){
+
+if(i < text.length){
+document.getElementById("typing").innerHTML += text.charAt(i);
+i++;
+}else{
+clearInterval(typing);
+}
+
+},100);
+
+}
+
+function openLetters(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+"><h1>💌 Open When Letters</h1><button onclick="sadLetter()">
+💌 When You're Sad
+</button>
+<button onclick="missLetter()">
+💌 When You Miss Me
+</button>
+
+<button onclick="motivationLetter()">
+💌 When You Need Motivation
+</button>
+
+<button onclick="showLovePage()">
+❤️ Back
+</button></div>`;
+
+if(music.paused){
+    music.play().catch(()=>{});
+  }
+
+}
+  
+function sadLetter(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+"><h1>💌 Open When You're Sad</h1><p style="font-size:22px;line-height:1.8;max-width:800px;">Hey Gullumullu ❤️
+
+I know things may feel difficult right now.
+
+But you've survived every hard day so far.
+
+You're stronger than you think.
+
+And I'm proud of you.
+
+— Your Baccha 🙈
+
+</p><button onclick="openLetters()">
+❤️ Back
+</button></div>`;
+
+if(music.paused){
+    music.play().catch(()=>{});
+}
+
+}
+  
+function missLetter(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+"><h1>💌 Open When You Miss Me</h1><p style="font-size:22px;line-height:1.8;max-width:800px;">Hey Gullumullu ❤️
+
+If you're reading this,
+
+I'm probably missing you too 😭
+
+Remember Road No. 3.
+
+Remember our random talks.
+
+Remember the study sessions.
+
+Remember all the stupid things we laughed about.
+
+No matter what happens,
+
+those memories will always be special to me ❤️
+
+— Your Baccha 🙈
+
+</p><button onclick="openLetters()">
+❤️ Back
+</button></div>`;
+
+if(music.paused){
+    music.play().catch(()=>{});
+}
+
+}
+  
+function motivationLetter(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+"><h1>💌 Open When You Need Motivation</h1><p style="font-size:22px;line-height:1.8;max-width:800px;">Hey Gullumullu ❤️
+
+I know you're capable of amazing things.
+
+Don't let one bad day make you doubt yourself.
+
+Keep going.
+
+Keep trying.
+
+Keep believing in yourself.
+
+Because I already do ❤️
+
+And no matter what happens,
+
+I'll always be cheering for you.
+
+— Your Baccha 🙈
+
+</p><button onclick="openLetters()">
+❤️ Back
+</button></div>`;
+
+if(music.paused){
+    music.play().catch(()=>{});
+  }
+
+  }
+  
+function showCredits(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+overflow:hidden;
+position:relative;
+">
+
+<div style="
+position:absolute;
+width:100%;
+text-align:center;
+animation:credits 25s linear forwards;
+font-size:28px;
+line-height:2;
+">
+
+<br><br><br><br><br><br>
+
+🎬 Happy Birthday Gullumullu ❤️
+
+<br><br>
+
+Starring
+
+<br>
+
+Rishika ❤️
+
+<br><br>
+
+Featuring
+
+<br>
+
+Your Baccha 🙈
+
+<br><br>
+
+Special Thanks
+
+<br>
+
+Road No. 3 ❤️
+
+<br>
+
+Study Sessions 📚🤣
+
+<br>
+
+Random Talks 🌙
+
+<br>
+
+All Our Memories 💖
+
+<br><br>
+
+Directed By
+
+<br>
+
+Your Baccha 🙈
+
+<br><br>
+
+The End ❤️
+
+<br><br>
+
+<button onclick="window.location.reload()">
+🔄 Start Over
+</button>
+</div>
+
+</div>
+
+`;
+
+
+if(music.paused){
+    music.play().catch(()=>{});
+}
+
+} function cakePage(){
+
+document.body.innerHTML = `
+
+<div style="
+background:white;
+color:black;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+">
+
+<h1>🎂 Happy Birthday Gullumullu 🎂</h1>
+
+<p>Blow all candles ❤️</p>
+
+<div style="font-size:100px;">🎂</div>
+
+<div>
+
+<span onclick="blow(this)" style="font-size:35px;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:35px;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:35px;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:35px;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:35px;">🕯️</span>
+
+</div>
+
+<p id="wishMsg"></p>
+
+<div id="cakeLetter"></div>
+
+</div>
+
+`;
+
+}
+
+let candlesBlown = 0;
+
+function blow(candle){
+
+candle.innerHTML = "💨";
+
+candlesBlown++;
+
+if(candlesBlown==5){
+
+document.getElementById("wishMsg").innerHTML =
+"🎉 Make a Wish ❤️";
+
+for(let i=0;i<20;i++){
+setTimeout(createFirework,i*200);
+}
+
+document.getElementById("cakeLetter").innerHTML =
+"💌 Dear Gullumullu ❤️<br><br>Happy Birthday ❤️<br><br>You are amazing and deserve all the happiness in the world.<br><br>— Your Baccha 🙈";
+
+}
+
+  } window.onload = function(){
+
+setTimeout(function(){
+
+document.getElementById("loader").style.display = "none";
+
+},3000);
+
+  }</script>
+</body>
+  </html>
