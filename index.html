@@ -941,16 +941,50 @@ candle.innerHTML = "💨";
 
 candlesBlown++;
 
-if(candlesBlown == 5){
+if(candlesBlown==5){
 
 document.getElementById("wishMsg").innerHTML =
-"🎉 Make a Wish Gullumullu ❤️ 🎉";
+"<h2>💌 A Letter For Gullumullu</h2><p id='cakeLetter'></p>";
 
-for(let i=0;i<20;i++){
-setTimeout(createFirework,i*200);
+for(let i=0;i<30;i++){
+setTimeout(createFirework,i*150);
 }
 
+let text = `You are kind.
+
+You are beautiful.
+
+You are strong.
+
+You make ordinary days special.
+
+Your smile makes people happy.
+
+Thank you for every memory.
+
+Happy Birthday Gullumullu ❤️
+
+— Your Baccha 🙈`;
+
+let i = 0;
+
+let typing = setInterval(function(){
+
+if(i < text.length){
+
+document.getElementById("cakeLetter").innerHTML += text.charAt(i);
+
+i++;
+
+}else{
+
+clearInterval(typing);
+
 }
+
+},50);
+
+  }
 
   } window.onload = function(){
 
