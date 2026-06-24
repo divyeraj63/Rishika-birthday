@@ -446,7 +446,9 @@ Forever yours,
 
 Your Baccha 🙈
 
-</p><button onclick="secretLetter()">
+</p><button onclick="cakePage()">
+🎂 Birthday Cake
+</button><button onclick="secretLetter()">
 💌 Secret Letter
 </button><button onclick="openLetters()">
 💌 Open When Letters
@@ -933,7 +935,52 @@ if(music.paused){
     music.play().catch(()=>{});
 }
 
-}let candlesBlown = 0;
+} function cakePage(){
+
+document.body.innerHTML = `
+
+<div style="
+background:white;
+color:black;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+">
+
+<h1>🎂 Happy Birthday Gullumullu 🎂</h1>
+
+<p>Blow all candles ❤️</p>
+
+<div style="font-size:100px;">🎂</div>
+
+<div>
+
+<span onclick="blow(this)" style="font-size:35px;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:35px;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:35px;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:35px;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:35px;">🕯️</span>
+
+</div>
+
+<p id="wishMsg"></p>
+
+<div id="cakeLetter"></div>
+
+</div>
+
+`;
+
+}
+
+let candlesBlown = 0;
 
 function blow(candle){
 
@@ -944,47 +991,16 @@ candlesBlown++;
 if(candlesBlown==5){
 
 document.getElementById("wishMsg").innerHTML =
-"<h2>💌 A Letter For Gullumullu</h2><p id='cakeLetter'></p>";
+"🎉 Make a Wish ❤️";
 
-for(let i=0;i<30;i++){
-setTimeout(createFirework,i*150);
+for(let i=0;i<20;i++){
+setTimeout(createFirework,i*200);
 }
 
-let text = `You are kind.
-
-You are beautiful.
-
-You are strong.
-
-You make ordinary days special.
-
-Your smile makes people happy.
-
-Thank you for every memory.
-
-Happy Birthday Gullumullu ❤️
-
-— Your Baccha 🙈`;
-
-let i = 0;
-
-let typing = setInterval(function(){
-
-if(i < text.length){
-
-document.getElementById("cakeLetter").innerHTML += text.charAt(i);
-
-i++;
-
-}else{
-
-clearInterval(typing);
+document.getElementById("cakeLetter").innerHTML =
+"💌 Dear Gullumullu ❤️<br><br>Happy Birthday ❤️<br><br>You are amazing and deserve all the happiness in the world.<br><br>— Your Baccha 🙈";
 
 }
-
-},50);
-
-  }
 
   } window.onload = function(){
 
