@@ -1,1 +1,1142 @@
+<!DOCTYPE html><html lang="en">  <head>  
+<meta charset="UTF-8">  
+<meta name="viewport" content="width=device-width, initial-scale=1.0">  
+<title>Happy Birthday Gullumullu ❤️</title><style>  
+*{  
+margin:0;  
+padding:0;  
+box-sizing:border-box;  
+font-family:Arial,sans-serif;  
+}
 
+  
+body{
+background:black;
+overflow:hidden;
+color:white;
+}
+
+#progress{
+position:fixed;
+top:0;
+left:0;
+height:5px;
+width:0%;
+background:#ff4d6d;
+z-index:999;
+transition:12s linear;
+}
+
+.heart{
+position:fixed;
+bottom:-20px;
+font-size:20px;
+animation:floatUp 8s linear infinite;
+opacity:0.8;
+}
+
+@keyframes floatUp{
+from{
+transform:translateY(0);
+opacity:1;
+}
+to{
+transform:translateY(-110vh);
+opacity:0;
+}
+}
+.stars{
+position:fixed;
+width:100%;
+height:100%;
+background:
+radial-gradient(white 1px, transparent 1px);
+background-size:50px 50px;
+animation:moveStars 80s linear infinite;
+z-index:-1;
+opacity:0.5;
+}
+
+@keyframes moveStars{
+from{transform:translateY(0);}
+to{transform:translateY(-1000px);}
+}
+
+.page{
+position:absolute;
+width:100%;
+height:100vh;
+display:none;
+z-index:1;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+background:rgba(0,0,0,0.6);
+}
+
+.active{
+display:flex;
+z-index:2;
+animation:fade 2s;
+}
+
+@keyframes fade{
+from{opacity:0;}
+to{opacity:1;}
+}
+
+@keyframes credits{
+from{
+transform:translateY(100%);
+}
+to{
+transform:translateY(-120%);
+}
+}  
+  
+h1{
+font-size:3rem;
+margin-bottom:20px;
+}
+
+p{
+max-width:800px;
+font-size:1.3rem;
+line-height:1.8;
+}
+
+img{
+max-width:80%;
+max-height:65vh;
+border-radius:20px;
+box-shadow:0 0 25px rgba(255,255,255,0.4);
+}
+
+input{
+padding:15px;
+border:none;
+border-radius:12px;
+font-size:18px;
+}
+
+button{
+padding:12px 25px;
+margin-top:15px;
+border:none;
+border-radius:12px;
+cursor:pointer;
+font-size:18px;
+}#loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:2rem;
+z-index:9999;
+  }.firework{
+position:fixed;
+font-size:30px;
+animation:boom 2s linear forwards;
+}
+
+@keyframes boom{
+from{
+transform:scale(0);
+opacity:1;
+}
+to{
+transform:scale(3);
+opacity:0;
+}
+}
+</style></head><body><div id="loader">
+<h1>Loading Memories ❤️</h1>
+</div><div id="progress"></div><div class="stars"></div><div class="page active" id="login">
+
+<h1>❤️ A Surprise For Gullumullu ❤️</h1>  
+<p>Enter the secret password</p>  
+<input id="password" type="password">  
+<button onclick="checkPass()">📸 Start Memory Journey ❤️</button>  <br><br>
+
+<button onclick="openQuiz()">❤️ Our Quiz</button>
+
+<button onclick="appreciate()">🌹 Why You're Special</button>
+
+<button onclick="dontClick()">🚫 Don't Click</button>
+
+</div><div class="page" id="slide1">  
+<h1 id="typing"></h1>  
+<p>  
+Some people become memories.  
+Some become lessons.  
+And some become the most beautiful part of life.  
+</p>  
+</div><div class="page" id="slide2">  
+<p>  
+Around June–July, after a long silence,  
+life somehow brought us back together.  
+And I’m grateful every day that it happened.  
+</p>  
+</div><div class="page" id="slide3">  
+<img src="IMG_20260209_022837_068.jpg">  
+<p>Our story is made of countless little moments.</p>  
+</div><div class="page" id="slide4">  
+<img src="Snapchat-478542105.jpg">  
+<p>Road No. 3 ❤️<br>Our first photo together as best friends.</p>  
+</div><div class="page" id="slide5">  
+<img src="IMG_20260211_031208_494.jpg">  
+<p>Every smile with you became a memory worth keeping.</p>  
+</div><div class="page" id="slide6">  
+<img src="IMG_20260313_142029.jpg">  
+<p>You turned ordinary days into special ones.</p>  
+</div><div class="page" id="slide7">  
+<img src="Screenshot_2026-02-28-02-26-20-53_965bbf4d18d205f782c6b8409c5773a4.jpg">  
+<p>Every conversation became my favorite part of the day.</p>  
+</div><div class="page" id="slide8">  
+<img src="Screenshot_2026-04-04-21-33-33-03_99c04817c0de5652397fc8b56c3b3817.jpg">  
+<p>Every moment with you is my favorite memory.</p>  
+</div><div class="page" id="slide9">  
+<img src="Snapchat-1167328306.jpg">  
+<p>Thank you for every laugh and every smile.</p>  
+</div><div class="page" id="slide10">  
+<img src="Snapchat-541767797.jpg">  
+<p>Happy Birthday My Gullumullu ❤️</p>  
+</div><div class="page" id="slide11">  
+<img src="Snapchat-768854161.jpg">  
+<p>  
+Forever cheering for you.<br>  
+From ur baccha 🙈  
+</p>  
+</div><audio id="bgmusic" loop>
+  <source src="song.mp3" type="audio/mpeg">
+</audio><script>  let current = 1;
+let music;
+
+function checkPass(){
+let pass=document.getElementById("password").value;
+
+if(pass==="2512"){music = document.getElementById("bgmusic"); music.play().catch(()=>{});
+document.getElementById("login").classList.remove("active");
+document.getElementById("slide1").classList.add("active");typeText();
+  restartProgress();
+
+let slideTimer = setInterval(()=>{
+document.getElementById("slide"+current).classList.remove("active");
+
+current++;
+
+if(current>11){ 
+clearInterval(slideTimer);for(let i=0;i<20;i++){
+
+setTimeout(()=>{
+createFirework();
+},i*300);
+
+}
+
+document.body.innerHTML = `
+
+<div style="  
+position:fixed;  
+top:0;  
+left:0;  
+width:100%;  
+height:100%;  
+background:white;  
+display:flex;  
+justify-content:center;  
+align-items:center;  
+flex-direction:column;  
+padding:30px;  
+text-align:center;  
+font-family:Arial,sans-serif;  
+color:black;  
+animation:fadeIn 3s;  
+">  <h1 style="font-size:3rem;">  
+I Love You Rishika ❤️  
+</h1>  <p style="  
+font-size:1.4rem;  
+max-width:800px;  
+line-height:1.8;  
+">  I truly love you.
+
+Forgive me for every mistake I've made.
+
+Please stay with me always.
+
+You are one of the biggest reasons
+I want to become better every day.
+
+Not only for myself...
+
+but for us.
+
+Every moment with you,
+every laugh,
+every fight,
+every memory...
+
+means more to me than I can explain.
+
+Happy Birthday Gullumullu ❤️
+
+Forever yours,
+
+Your Baccha 🙈 <br><br>
+
+<button onclick="secretLetter()">
+💌 Secret Letter
+</button>
+
+</p>  </div>  
+`; document.body.appendChild(music);
+music.play();
+return;
+
+}
+
+document.getElementById("slide"+current).classList.add("active");restartProgress();
+
+},12000);
+}else{
+alert("Wrong Password ❤️");
+}
+}
+
+function openQuiz(){
+
+let questions = [
+"Who is more dramatic? 😭",
+"Who gets distracted while studying? 📚🤣",
+"Who misses the other more? ❤️",
+"Who is more stubborn? 😤",
+"Who traumatized Jay more? 😂",
+
+"Who says 'I'm fine' but isn't? 😭",
+"Who overthinks more? 🤔",
+"Who starts random fights? 😂",
+"Who loves food more? 🍕",
+"Who is the cutest person alive? ❤️"
+];
+
+let currentQ = 0;
+
+function showQuestion(){
+
+document.body.innerHTML = `
+<div style="background:black;color:white;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;">
+
+<h1>❤️ Our Quiz ❤️</h1>
+
+<p style="font-size:24px;">${questions[currentQ]}</p>
+
+<button onclick="nextQuestion()">Me 😭</button>
+<button onclick="nextQuestion()">You ❤️</button>
+
+</div>
+`;
+}
+
+window.nextQuestion = function(){
+
+currentQ++;
+
+if(currentQ >= questions.length){
+
+document.body.innerHTML = `
+<div style="background:black;color:white;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;">
+
+<h1>💖 Quiz Complete 💖</h1>
+
+<p>
+No matter the answers...
+
+You're still my favorite person ❤️
+</p>
+
+<button onclick="openGift()">🎁 Open Your Gift</button>
+
+<br><br>
+
+<button onclick="location.reload()">Back</button>
+</div>
+`;
+return;
+}
+
+showQuestion();
+}
+
+showQuestion();
+  }function openGift(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+">
+
+<h1>🎁 Surprise 🎁</h1>
+
+<p style="font-size:24px;line-height:1.8;">
+
+Happy Birthday Gullumullu ❤️
+
+You are one of my favorite people.
+
+Thank you for every laugh,
+every memory,
+and every moment.
+
+Love,
+
+Your Baccha 🙈
+
+</p>
+
+<button onclick="goHome()">
+❤️ Back
+</button>
+
+</div>
+
+`;
+
+if(music.paused){
+    music.play().catch(()=>{});
+  }
+
+}function showLovePage(){
+
+document.body.innerHTML = `
+
+<div style="
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:white;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+padding:30px;
+text-align:center;
+color:black;
+"><h1>I Love You Rishika ❤️</h1><p>
+I truly love you.Happy Birthday Gullumullu ❤️
+
+Forever yours,
+
+Your Baccha 🙈
+
+</p><button onclick="cakePage()">
+🎂 Birthday Cake
+</button><button onclick="secretLetter()">
+💌 Secret Letter
+</button><button onclick="openLetters()">
+💌 Open When Letters
+</button><button onclick="showCredits()">
+🎬 View Credits
+</button><div style="margin-top:30px;">
+</div></div>`;
+
+if(music.paused){
+    music.play().catch(()=>{});
+}
+
+} function secretLetter(){
+
+document.body.innerHTML=`
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+">
+
+<h1>💌 Dear Gullumullu</h1>
+
+<p style="font-size:22px;line-height:1.8;max-width:800px;">
+
+Thank you for every memory.
+
+Road No. 3.
+
+The random talks.
+
+The laughs.
+
+The study sessions.
+
+The moments that became memories.
+
+No matter where life takes us,
+
+you'll always be someone special to me ❤️
+
+— Your Baccha 🙈
+
+</p>
+
+<button onclick="showLovePage()">
+❤️ Back
+</button>
+</div>
+
+`;
+
+if(music.paused){
+    music.play().catch(()=>{});
+  }
+
+} function appreciate(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+overflow:auto;
+">
+
+<h1>🌹 Things I Appreciate About You 🌹</h1>
+
+<p style="font-size:22px;line-height:2;max-width:800px;">
+
+❤️ Your smile
+
+❤️ Your kindness
+
+❤️ The way you care
+
+❤️ Our random conversations
+
+❤️ The memories we've made
+
+❤️ The way you make ordinary days special
+
+❤️ Your patience with me
+
+❤️ The laughs we've shared
+
+❤️ The study sessions
+
+❤️ The food-sharing moments 😭
+
+❤️ Road No. 3 memories
+
+❤️ Simply being you
+
+</p>
+
+<button onclick="goHome()">
+❤️ Back
+</button>
+
+</div>
+
+`;
+
+} function dontClick(){
+
+document.body.innerHTML = `
+
+<div style="background:black;color:white;height:100vh;display:flex;justify-content:center;align-items:center;flex-direction:column;text-align:center;">  <h1>🚫 I Told You Not To Click 😭</h1>  <p>  🏆 World's Cutest Person Award
+
+Winner:
+
+❤️ Gullumullu ❤️
+
+</p>  <button onclick="goHome()">
+❤️ Back
+</button>
+
+</div>  
+`;  
+  }  
+function createFirework(){
+
+let firework=document.createElement("div");
+
+let effects=["💖","🎊","✨","❤️"];
+
+firework.innerHTML=
+effects[Math.floor(Math.random()*effects.length)];
+
+firework.className="firework";
+
+firework.style.left=Math.random()*100+"vw";
+firework.style.top=Math.random()*100+"vh";
+
+document.body.appendChild(firework);
+
+setTimeout(()=>{
+firework.remove();
+},2000);
+
+  } function createHeart(){
+
+let heart=document.createElement("div");
+
+heart.innerHTML="❤️";
+heart.className="heart";
+
+heart.style.left=Math.random()*100+"vw";
+heart.style.fontSize=(20+Math.random()*25)+"px";
+
+document.body.appendChild(heart);
+
+setTimeout(()=>{
+heart.remove();
+},8000);
+
+}
+
+setInterval(createHeart,1000);function createRose(){
+
+let rose=document.createElement("div");
+
+rose.innerHTML="🌹";
+
+rose.style.position="fixed";
+rose.style.top="-20px";
+rose.style.left=Math.random()*100+"vw";
+rose.style.fontSize="30px";
+rose.style.animation="floatUp 10s linear";
+
+document.body.appendChild(rose);
+
+setTimeout(()=>{
+rose.remove();
+},10000);
+
+}
+
+setInterval(createRose,3000);
+</script><script>
+
+function restartProgress(){
+  let bar = document.getElementById("progress");
+
+  bar.style.transition = "none";
+  bar.style.width = "0%";
+
+  void bar.offsetWidth;
+
+  bar.style.transition = "12s linear";
+  bar.style.width = "100%";
+}
+
+function typeText(){
+
+let text = "Happy Birthday Rishika ❤️";
+let i = 0;
+
+document.getElementById("typing").innerHTML = "";
+
+let typing = setInterval(function(){
+
+if(i < text.length){
+document.getElementById("typing").innerHTML += text.charAt(i);
+i++;
+}else{
+clearInterval(typing);
+}
+
+},100);
+
+}
+
+function openLetters(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+"><h1>💌 Open When Letters</h1><button onclick="sadLetter()">
+💌 When You're Sad
+</button>
+<button onclick="missLetter()">
+💌 When You Miss Me
+</button>
+
+<button onclick="motivationLetter()">
+💌 When You Need Motivation
+</button>
+
+<button onclick="showLovePage()">
+❤️ Back
+</button></div>`;
+
+if(music.paused){
+    music.play().catch(()=>{});
+  }
+
+}
+  
+function sadLetter(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+"><h1>💌 Open When You're Sad</h1><p style="font-size:22px;line-height:1.8;max-width:800px;">Hey Gullumullu ❤️
+
+I know things may feel difficult right now.
+
+But you've survived every hard day so far.
+
+You're stronger than you think.
+
+And I'm proud of you.
+
+— Your Baccha 🙈
+
+</p><button onclick="openLetters()">
+❤️ Back
+</button></div>`;
+
+if(music.paused){
+    music.play().catch(()=>{});
+}
+
+}
+  
+function missLetter(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+"><h1>💌 Open When You Miss Me</h1><p style="font-size:22px;line-height:1.8;max-width:800px;">Hey Gullumullu ❤️
+
+If you're reading this,
+
+I'm probably missing you too 😭
+
+Remember Road No. 3.
+
+Remember our random talks.
+
+Remember the study sessions.
+
+Remember all the stupid things we laughed about.
+
+No matter what happens,
+
+those memories will always be special to me ❤️
+
+— Your Baccha 🙈
+
+</p><button onclick="openLetters()">
+❤️ Back
+</button></div>`;
+
+if(music.paused){
+    music.play().catch(()=>{});
+}
+
+}
+  
+function motivationLetter(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+"><h1>💌 Open When You Need Motivation</h1><p style="font-size:22px;line-height:1.8;max-width:800px;">Hey Gullumullu ❤️
+
+I know you're capable of amazing things.
+
+Don't let one bad day make you doubt yourself.
+
+Keep going.
+
+Keep trying.
+
+Keep believing in yourself.
+
+Because I already do ❤️
+
+And no matter what happens,
+
+I'll always be cheering for you.
+
+— Your Baccha 🙈
+
+</p><button onclick="openLetters()">
+❤️ Back
+</button></div>`;
+
+if(music.paused){
+    music.play().catch(()=>{});
+  }
+
+  }
+  
+function showCredits(){
+
+document.body.innerHTML = `
+
+<div style="
+background:black;
+color:white;
+height:100vh;
+overflow:hidden;
+position:relative;
+">
+
+<div style="
+position:absolute;
+width:100%;
+text-align:center;
+animation:credits 25s linear forwards;
+font-size:28px;
+line-height:2;
+">
+
+<br><br><br><br><br><br>
+
+🎬 Happy Birthday Gullumullu ❤️
+
+<br><br>
+
+Starring
+
+<br>
+
+Rishika ❤️
+
+<br><br>
+
+Featuring
+
+<br>
+
+Your Baccha 🙈
+
+<br><br>
+
+Special Thanks
+
+<br>
+
+Road No. 3 ❤️
+
+<br>
+
+Study Sessions 📚🤣
+
+<br>
+
+Random Talks 🌙
+
+<br>
+
+All Our Memories 💖
+
+<br><br>
+
+Directed By
+
+<br>
+
+Your Baccha 🙈
+
+<br><br>
+
+The End ❤️
+
+<br><br>
+
+<button onclick="window.location.reload()">
+🔄 Start Over
+</button>
+</div>
+
+</div>
+
+`;
+
+
+if(music.paused){
+    music.play().catch(()=>{});
+}
+
+} function cakePage(){
+
+document.body.innerHTML = `
+
+<div style="
+background:white;
+color:black;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+">
+
+<h1>🎂 Happy Birthday Gullumullu 🎂</h1>
+
+<p>Blow all candles ❤️</p>
+
+<div style="font-size:100px;">🎂</div>
+
+<div>
+
+<span onclick="blow(this)" style="font-size:35px;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:35px;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:35px;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:35px;">🕯️</span>
+
+<span onclick="blow(this)" style="font-size:35px;">🕯️</span>
+
+</div>
+
+<p id="wishMsg"></p>
+
+<div id="cakeLetter"></div>
+
+</div>
+
+`;
+
+}
+
+let candlesBlown = 0;
+
+function blow(candle){
+
+if(candle.innerHTML=="💨") return;
+
+candle.innerHTML = "💨";
+
+candlesBlown++;
+
+if(candlesBlown==5){
+
+document.getElementById("wishMsg").innerHTML =
+"🎉 Make a Wish Gullumullu ❤️ 🎉";
+
+for(let i=0;i<30;i++){
+setTimeout(createFirework,i*150);
+}
+
+for(let i=0;i<20;i++){
+setTimeout(createBalloon,i*300);
+}
+
+let text =
+"💌 Dear Gullumullu ❤️\n\nHappy Birthday ❤️\n\nYou are one of the most amazing people I know.\n\nThank you for every memory, every laugh, every random conversation and every moment.\n\nYou deserve happiness, success and lots of smiles.\n\n— Your Baccha 🙈";
+
+let i = 0;
+
+let typing = setInterval(function(){
+
+document.getElementById("cakeLetter").innerHTML += text.charAt(i);
+
+i++;
+
+if(i >= text.length){
+
+clearInterval(typing);
+
+document.getElementById("cakeLetter").innerHTML +=
+`<br><br>
+<button onclick="awardPage()">
+🏆 Open Your Award
+</button>`;
+}
+
+},50);
+
+}
+
+}
+
+function createBalloon(){
+
+let balloon = document.createElement("div");
+
+balloon.innerHTML = "🎈";
+
+balloon.style.position = "fixed";
+balloon.style.bottom = "-50px";
+balloon.style.left = Math.random()*100 + "vw";
+balloon.style.fontSize = "40px";
+balloon.style.transition = "8s linear";
+
+document.body.appendChild(balloon);
+
+setTimeout(()=>{
+balloon.style.transform = "translateY(-120vh)";
+},100);
+
+setTimeout(()=>{
+balloon.remove();
+},8000);
+
+  }  function awardPage(){
+
+document.body.innerHTML = `
+
+<div style="
+background:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+">
+
+<h1>🏆 Official Award 🏆</h1>
+
+<h2>World's Most Amazing Gullumullu ❤️</h2>
+
+<p style="font-size:24px;line-height:2;">
+
+⭐ Kindness: 100%
+
+<br>
+
+⭐ Smile: 100%
+
+<br>
+
+⭐ Cuteness: Infinite ❤️
+
+<br>
+
+⭐ Specialness: Infinite ❤️
+
+</p>
+
+<button onclick="finalSurprise()">
+❤️ One Last Surprise ❤️
+</button>
+
+</div>
+
+`;
+
+  } function finalSurprise(){
+
+document.body.innerHTML = `
+
+<div style="
+background:white;
+color:black;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+">
+
+<h1>🎉 Happy Birthday Gullumullu ❤️</h1>
+
+<p style="font-size:24px;line-height:2;">
+
+Thank you for every memory ❤️
+
+Thank you for every smile ❤️
+
+Thank you for being you ❤️
+
+Forever Your Baccha 🙈
+
+</p>
+
+<button onclick="showLovePage()">
+❤️ Back
+</button>
+</div>
+
+`;
+
+for(let i=0;i<50;i++){
+setTimeout(createFirework,i*150);
+}
+
+  }  function goHome(){
+    location.reload();
+  } window.onload = function(){
+
+setTimeout(function(){
+
+document.getElementById("loader").style.display = "none";
+
+},3000);
+
+  }</script>
+</body>
+  </html>
