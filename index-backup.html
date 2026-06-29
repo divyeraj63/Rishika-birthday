@@ -409,7 +409,7 @@ Your Baccha 🙈
 
 </p>
 
-<button onclick="location.reload()">
+<button onclick="goHome()">
 ❤️ Back
 </button>
 
@@ -455,20 +455,6 @@ Your Baccha 🙈
 </button><button onclick="showCredits()">
 🎬 View Credits
 </button><div style="margin-top:30px;">
-🎂<br>
-
-<span onclick="blow(this)" style="font-size:30px;cursor:pointer;">🕯️</span>
-
-<span onclick="blow(this)" style="font-size:30px;cursor:pointer;">🕯️</span>
-
-<span onclick="blow(this)" style="font-size:30px;cursor:pointer;">🕯️</span>
-
-<span onclick="blow(this)" style="font-size:30px;cursor:pointer;">🕯️</span>
-
-<span onclick="blow(this)" style="font-size:30px;cursor:pointer;">🕯️</span>
-
-<p id="wishMsg"></p>
-
 </div></div>`;
 
 if(music.paused){
@@ -573,7 +559,7 @@ overflow:auto;
 
 </p>
 
-<button onclick="location.reload()">
+<button onclick="goHome()">
 ❤️ Back
 </button>
 
@@ -591,7 +577,9 @@ Winner:
 
 ❤️ Gullumullu ❤️
 
-</p>  <button onclick="location.reload()">⬅ Back</button>
+</p>  <button onclick="goHome()">
+❤️ Back
+</button>
 
 </div>  
 `;  
@@ -984,6 +972,8 @@ let candlesBlown = 0;
 
 function blow(candle){
 
+if(candle.innerHTML=="💨") return;
+
 candle.innerHTML = "💨";
 
 candlesBlown++;
@@ -991,17 +981,154 @@ candlesBlown++;
 if(candlesBlown==5){
 
 document.getElementById("wishMsg").innerHTML =
-"🎉 Make a Wish ❤️";
+"🎉 Make a Wish Gullumullu ❤️ 🎉";
+
+for(let i=0;i<30;i++){
+setTimeout(createFirework,i*150);
+}
 
 for(let i=0;i<20;i++){
-setTimeout(createFirework,i*200);
+setTimeout(createBalloon,i*300);
 }
 
-document.getElementById("cakeLetter").innerHTML =
-"💌 Dear Gullumullu ❤️<br><br>Happy Birthday ❤️<br><br>You are amazing and deserve all the happiness in the world.<br><br>— Your Baccha 🙈";
+let text =
+"💌 Dear Gullumullu ❤️\n\nHappy Birthday ❤️\n\nYou are one of the most amazing people I know.\n\nThank you for every memory, every laugh, every random conversation and every moment.\n\nYou deserve happiness, success and lots of smiles.\n\n— Your Baccha 🙈";
+
+let i = 0;
+
+let typing = setInterval(function(){
+
+document.getElementById("cakeLetter").innerHTML += text.charAt(i);
+
+i++;
+
+if(i >= text.length){
+
+clearInterval(typing);
+
+document.getElementById("cakeLetter").innerHTML +=
+`<br><br>
+<button onclick="awardPage()">
+🏆 Open Your Award
+</button>`;
+}
+
+},50);
 
 }
 
+}
+
+function createBalloon(){
+
+let balloon = document.createElement("div");
+
+balloon.innerHTML = "🎈";
+
+balloon.style.position = "fixed";
+balloon.style.bottom = "-50px";
+balloon.style.left = Math.random()*100 + "vw";
+balloon.style.fontSize = "40px";
+balloon.style.transition = "8s linear";
+
+document.body.appendChild(balloon);
+
+setTimeout(()=>{
+balloon.style.transform = "translateY(-120vh)";
+},100);
+
+setTimeout(()=>{
+balloon.remove();
+},8000);
+
+  }  function awardPage(){
+
+document.body.innerHTML = `
+
+<div style="
+background:white;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:20px;
+">
+
+<h1>🏆 Official Award 🏆</h1>
+
+<h2>World's Most Amazing Gullumullu ❤️</h2>
+
+<p style="font-size:24px;line-height:2;">
+
+⭐ Kindness: 100%
+
+<br>
+
+⭐ Smile: 100%
+
+<br>
+
+⭐ Cuteness: Infinite ❤️
+
+<br>
+
+⭐ Specialness: Infinite ❤️
+
+</p>
+
+<button onclick="finalSurprise()">
+❤️ One Last Surprise ❤️
+</button>
+
+</div>
+
+`;
+
+  } function finalSurprise(){
+
+document.body.innerHTML = `
+
+<div style="
+background:white;
+color:black;
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+text-align:center;
+padding:30px;
+">
+
+<h1>🎉 Happy Birthday Gullumullu ❤️</h1>
+
+<p style="font-size:24px;line-height:2;">
+
+Thank you for every memory ❤️
+
+Thank you for every smile ❤️
+
+Thank you for being you ❤️
+
+Forever Your Baccha 🙈
+
+</p>
+
+<button onclick="showLovePage()">
+❤️ Back
+</button>
+</div>
+
+`;
+
+for(let i=0;i<50;i++){
+setTimeout(createFirework,i*150);
+}
+
+  }  function goHome(){
+    location.reload();
   } window.onload = function(){
 
 setTimeout(function(){
