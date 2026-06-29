@@ -1127,14 +1127,8 @@ for(let i=0;i<50;i++){
 setTimeout(createFirework,i*150);
 }
 
-  } function goHome(){
-
-document.body.innerHTML = document.getElementById("login").outerHTML;
-
-if(music && music.paused){
-music.play().catch(()=>{});
-}
-
+  }  function goHome(){
+    showLovePage();
   } window.onload = function(){
 
 setTimeout(function(){
